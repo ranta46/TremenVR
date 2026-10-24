@@ -1,31 +1,9 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TremenVR · Play today's work</title>
-<meta name="description" content="A new short VR world every day. Play free on your phone, PC or VR headset.">
-<script data-goatcounter="https://thehush.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<style>
-:root{--bg:#0c0a12;--card:#16121f;--fg:#f3ead8;--mute:#b3a9c4;--gold:#e0a73e;--line:#2c2538;color-scheme:dark}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif}
-main{max-width:640px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));display:grid;gap:22px}
-.brand{font:700 .8rem/1 ui-monospace,Menlo,monospace;letter-spacing:.3em;color:var(--gold)}
-h1{font-size:2.2rem;margin:.2em 0 0;line-height:1.1}
-.today{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px}
-.today p{margin:0;color:var(--mute);line-height:1.55}
-.meta{font:600 .75rem ui-monospace,monospace;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
-a.play{display:block;text-align:center;background:var(--gold);color:#1b1206;font-weight:700;font-size:1.25rem;padding:16px;border-radius:12px;text-decoration:none}
-ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}li a{display:flex;justify-content:space-between;gap:12px;color:var(--fg);text-decoration:none;padding:12px 14px;border:1px solid var(--line);border-radius:10px}
-li span{color:var(--mute);font-size:.85rem}
-footer{color:var(--mute);font-size:.75rem}
-</style></head><body><main>
-<div class="brand">TREMENVR</div>
-<div><h1>A new world to play, every day.</h1><p style="color:var(--mute);margin:.6em 0 0">Free. No app. Phone, PC or VR headset.</p></div>
-<section class="today" id="today"><div class="meta">Loading today's work…</div></section>
-<section><div class="meta" style="margin-bottom:10px">All works</div><ul id="all"></ul></section>
-<footer>© 2026 Mori · TremenVR. All characters are original works.</footer>
-</main>
-<script>
-fetch("works.json").then(r=>r.json()).then(ws=>{ws.sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id));const w=ws[0];
- document.getElementById("today").innerHTML=`<div class="meta">Today · ${w.date} · ${w.world} · about ${w.minutes} min</div><h2 style="margin:0;font-size:1.7rem">${w.title}</h2><p>${w.blurb}</p><p>With ${w.characters.join(" and ")}.</p><a class="play" href="${w.path}">Play now</a>`;
- document.getElementById("all").innerHTML=ws.map(x=>`<li><a href="${x.path}"><b>${x.title}</b><span>${x.date}</span></a></li>`).join("");
-}).catch(()=>{document.getElementById("today").innerHTML='<a class="play" href="w01/">Play now</a>';});
-</script></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TremenVR · Play now</title>
+<meta name="description" content="Play today's free game now. Phone, PC or VR headset. No app.">
+<!-- LATEST: updated every day to the newest work -->
+<meta http-equiv="refresh" content="0;url=w01/?s=profile">
+<script>(function(){var LATEST="w01/";var q=location.search||"?s=profile";location.replace(LATEST+q);})();</script>
+<style>html,body{margin:0;background:#0c0a12;color:#f3ead8;font-family:Georgia,serif}a{color:#e0a73e;font-size:1.3rem}main{padding:40px 16px;text-align:center}</style>
+</head><body><main><p><a href="w01/?s=profile">Play now</a></p><p><a href="all.html" style="font-size:1rem">All games</a></p></main></body></html>

@@ -10,3 +10,7 @@
 - Landscape (YouTube, normal video so description links are clickable):
   VW=960 VH=540 WORK_HTML=... python3 tools/cap.py cap frames16 '[...]'  -> 1920x1080 frames
   copy tools/ad_template_16x9.py and edit SEG / title / end card.
+- One tap to play: index.html (the profile link) jumps straight to the newest work. Update LATEST in index.html
+  (meta refresh, the script and the link) to the new wNN/ every day. all.html is the list of all works.
+- Every work: tapping anywhere on the intro starts the game; links carry ?s=<source> (yt, ytshort, tt, ig, fb, th, bs, pin, x, li, profile)
+  and the work sends open-<src> / from-<src> events. Ending card has "More free games" -> ../all.html.

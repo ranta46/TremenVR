@@ -25,13 +25,13 @@ button.primary{background:var(--brass);color:#1b1206;border-color:var(--brass)}
   <div class="eyebrow">TremenVR · Work 01 · Home safe</div>
   <h1>The last train is <em>home.</em></h1>
   <p>Rook keeps the tower lit until the next night. The Hush will remember this tower.</p>
-  <div class="actions"><button class="primary" id="again" type="button">Climb again</button></div>
+  <div class="actions"><button class="primary" id="again" type="button">Climb again</button><a href="../all.html" style="color:var(--brass);align-self:center;padding:8px 4px">More free games →</a></div>
 </section>
 <section class="card" id="intro">
   <div class="eyebrow">TremenVR · Gloamrun · Work 01</div>
   <h1>The Signal <em>Tower</em></h1>
-  <p>The last train is coming home through the dark. Rook needs you on the old signal tower. Look at a lamp to light it. Keep them burning.</p>
-  <div class="actions"><button class="primary" id="go" type="button">Climb the tower</button><button id="vr" type="button" hidden>Climb in VR</button></div>
+  <p style="color:var(--brass);font-weight:700">Tap anywhere to start.</p><p>The last train is coming home through the dark. Rook needs you on the old signal tower. Look at a lamp to light it. Keep them burning.</p>
+  <div class="actions"><button class="primary" id="go" type="button">Tap to play</button><button id="vr" type="button" hidden>Climb in VR</button></div>
   <p style="font-size:.75rem">© 2026 Mori. Gloamrun, Rook and the Hush are original works.</p>
 </section>
 <script data-goatcounter="https://thehush.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -216,7 +216,7 @@ function thump(){tone(70,40,0.7,0.6);}
 /* ---------- captions ---------- */
 let capT=0;function say(text,ms,who){who=who===undefined?"Rook · conductor":who;const c=$("cap");c.innerHTML=(who?"<b>"+who+"</b>":"")+text;c.style.opacity=1;clearTimeout(capT);capT=setTimeout(()=>{c.style.opacity=0;},ms||2600);}
 /* ---------- anonymous counts (GoatCounter, no cookies) ---------- */
-const TRK={off:false,sent:{},ver:"v1"};
+const TRK={off:false,sent:{},ver:"v1",src:(()=>{try{return(new URLSearchParams(location.search).get("s")||"direct").replace(/[^a-z0-9]/gi,"").slice(0,12)||"direct";}catch(e){return"direct";}})()};
 function trk(p){if(TRK.off)return;p="tremen/w01/"+TRK.ver+"/"+p;const go=n=>{try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:p,event:true});else if(n<6)setTimeout(()=>go(n+1),1000);}catch(e){}};go(0);}
 function trkOnce(p){if(TRK.sent[p])return;TRK.sent[p]=1;trk(p);}
 /* ---------- look controls ---------- */
@@ -233,7 +233,7 @@ const tmpV=new V(),fwd=new V();
 function once(k,f){if(st.said[k])return;st.said[k]=1;f();}
 function start(vr){initAudio();Object.assign(st,{mode:"play",t:0,lit:0,u:0.02,snuffT:0,stare:0,stareHold:0,done:false,hushY:-80,hushA:-1.9,end:0,said:{}});
  LAMPS.forEach(L=>{L.target=0;L.gaze=0;setLamp(L,0);});$("intro").hidden=true;$("reticle").hidden=false;$("hud").hidden=false;
- trkOnce("start-"+(vr?"vr":(matchMedia("(pointer:coarse)").matches?"phone":"pc")));
+ trkOnce("start-"+(vr?"vr":(matchMedia("(pointer:coarse)").matches?"phone":"pc")));trkOnce("from-"+TRK.src);
  say("The last train is coming home. Light the way!",3200);}
 function litCount(){return LAMPS.filter(L=>L.target>0.5).length;}
 function update(dt){const T=st.t+=dt;hushU.time.value+=dt;
@@ -290,7 +290,9 @@ window.__still=still;
 let last=performance.now();
 function frame(now){const dt=Math.min(0.05,(now-last)/1000);last=now;if(st.mode!=="still")update(dt);renderer.render(scene,camera);}
 renderer.setAnimationLoop(frame);
-$("go").addEventListener("click",()=>start(false));$("again").addEventListener("click",()=>start(false));
+$("go").addEventListener("click",()=>start(false));
+addEventListener("pointerup",e=>{if($("intro").hidden||st.auto)return;if(e.target.closest&&(e.target.closest("#vr")||e.target.closest("#go")||e.target.closest("a")))return;start(false);});
+setTimeout(()=>{if(!$("intro").hidden&&!st.auto)trkOnce("open-"+TRK.src);},1500);$("again").addEventListener("click",()=>start(false));
 if(navigator.xr&&navigator.xr.isSessionSupported){navigator.xr.isSessionSupported("immersive-vr").then(ok=>{if(ok)$("vr").hidden=false;}).catch(()=>{});}
 $("vr").addEventListener("click",async()=>{try{const s=await navigator.xr.requestSession("immersive-vr");await renderer.xr.setSession(s);start(true);}catch(e){say("VR could not start on this device.",3000,"");}});
 addEventListener("pagehide",()=>{if(st.mode==="play")trk("quit-at-lamps-"+litCount()+(st.stare>0?"-stare":""));});
