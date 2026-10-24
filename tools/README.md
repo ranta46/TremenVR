@@ -7,3 +7,6 @@
 - ad_template.py: copy and edit per work (SEG windows + overlay lines, title, end card).
   FRAMES=frames OUTDIR=ad_out AD_MP4=wNN_ad.mp4 python3 tools/ad_template.py
 - three.r128.min.js: local copy so capture works without network.
+- Landscape (YouTube, normal video so description links are clickable):
+  VW=960 VH=540 WORK_HTML=... python3 tools/cap.py cap frames16 '[...]'  -> 1920x1080 frames
+  copy tools/ad_template_16x9.py and edit SEG / title / end card.

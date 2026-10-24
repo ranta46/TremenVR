@@ -13,7 +13,7 @@ mode=sys.argv[1]; out=sys.argv[2] if len(sys.argv)>2 else "frames"
 windows=json.loads(sys.argv[3]) if len(sys.argv)>3 else []
 with sync_playwright() as p:
     b=p.chromium.launch(args=["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader","--ignore-gpu-blocklist"])
-    pg=b.new_page(viewport={"width":540,"height":960},device_scale_factor=2)
+    pg=b.new_page(viewport={"width":int(os.environ.get("VW","540")),"height":int(os.environ.get("VH","960"))},device_scale_factor=2)
     pg.add_init_script(INIT)
     pg.route("**/three.min.js", lambda r: r.fulfill(path=os.environ.get("THREE_JS",os.path.join(os.path.dirname(os.path.abspath(__file__)),"three.r128.min.js")), content_type="application/javascript"))
     pg.route("**/gc.zgo.at/**", lambda r: r.fulfill(body="window.goatcounter={count:function(o){console.log('GC '+o.path)}};",content_type="application/javascript"))
