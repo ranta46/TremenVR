@@ -14,3 +14,4 @@
   (meta refresh, the script and the link) to the new wNN/ every day. all.html is the list of all works.
 - Every work: tapping anywhere on the intro starts the game; links carry ?s=<source> (yt, ytshort, tt, ig, fb, th, bs, pin, x, li, profile)
   and the work sends open-<src> / from-<src> events. Ending card has "More free games" -> ../all.html.
+- Each work also gets a short name URL: <slug>/index.html that jumps to wNN/ (keeps ?s=). Add "slug" and "url" to works.json.

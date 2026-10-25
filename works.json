@@ -1,4 +1,30 @@
 [
- {"id":"w01","date":"2026-10-24","title":"The Signal Tower","world":"Gloamrun","characters":["Rook","the Hush"],"blurb":"Light the old signal lamps so the last train can come home. Do not move when the Hush looks at you.","path":"w01/","minutes":2},
- {"id":"w02","date":"2026-10-25","title":"Pip's Star Jar","world":"Skyfold","characters":["Pip","Grumble"],"blurb":"Catch falling wishes with Pip the star-fox before they break. Never tap the red ones. Then wake the big sleepy comet before he falls on you.","path":"w02/","minutes":2}
+ {
+  "id": "w01",
+  "date": "2026-10-24",
+  "title": "The Signal Tower",
+  "world": "Gloamrun",
+  "characters": [
+   "Rook",
+   "the Hush"
+  ],
+  "blurb": "Light the old signal lamps so the last train can come home. Do not move when the Hush looks at you.",
+  "path": "w01/",
+  "minutes": 2,
+  "slug": "signal-tower",
+  "url": "https://ranta46.github.io/TremenVR/signal-tower/"
+ },
+ {
+  "id": "w02",
+  "date": "2026-10-25",
+  "title": "Pip's Star Jar",
+  "world": "Skyfold",
+  "characters": [
+   "Pip",
+   "Grumble"
+  ],
+  "blurb": "Catch falling wishes with Pip the star-fox before they break. Never tap the red ones. Then wake the big sleepy comet before he falls on you.",
+  "path": "w02/",
+  "minutes": 2
+ }
 ]
