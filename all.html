@@ -27,5 +27,5 @@ footer{color:var(--mute);font-size:.75rem}
 fetch("works.json").then(r=>r.json()).then(ws=>{ws.sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id));const w=ws[0];
  document.getElementById("today").innerHTML=`<div class="meta">Today · ${w.date} · ${w.world} · about ${w.minutes} min</div><h2 style="margin:0;font-size:1.7rem">${w.title}</h2><p>${w.blurb}</p><p>With ${w.characters.join(" and ")}.</p><a class="play" href="${w.path}">Play now</a>`;
  document.getElementById("all").innerHTML=ws.map(x=>`<li><a href="${x.path}"><b>${x.title}</b><span>${x.date}</span></a></li>`).join("");
-}).catch(()=>{document.getElementById("today").innerHTML='<a class="play" href="w01/">Play now</a>';});
+}).catch(()=>{document.getElementById("today").innerHTML='<a class="play" href="w02/">Play now</a>';});
 </script></body></html>
