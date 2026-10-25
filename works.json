@@ -25,6 +25,8 @@
   ],
   "blurb": "Catch falling wishes with Pip the star-fox before they break. Never tap the red ones. Then wake the big sleepy comet before he falls on you.",
   "path": "w02/",
-  "minutes": 2
+  "minutes": 2,
+  "slug": "star-jar",
+  "url": "https://ranta46.github.io/TremenVR/star-jar/"
  }
 ]
