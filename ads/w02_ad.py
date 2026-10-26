@@ -20,7 +20,7 @@ SEG=[(rng(T["hook"],T["hook"]+4.0),"A sleepy comet is falling on you!"),
      (rng(T["wake"],T["wake"]+6.5),"Tap fast. Wake him up!"),
      (rng(T["fox"],T["fox"]+6.0),"Give the stars back to the sky.")]
 for fs,t in SEG: assert len(fs)>60, (t,len(fs))
-URL="ranta46.github.io/TremenVR/w02"
+URL="ranta46.github.io/TremenVR/star-jar"
 gold=(255,201,74); paper=(255,246,230); dark=(10,10,30)
 def st(d,xy,txt,font,fill,anchor="mm",sw=7): d.text(xy,txt,font=font,fill=fill,anchor=anchor,stroke_width=sw,stroke_fill=dark)
 def wrap(txt,font,maxw,d):
