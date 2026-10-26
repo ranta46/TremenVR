@@ -46,16 +46,16 @@
   "vr_hook": "1) Not a flat game: you turn your body toward a whale song that comes from the side, behind and below you, and feel a 40 m whale pass right over your glass bell. 2) Body action: turn to the sound, hold your gaze, look up, look down, and finally hold completely still. 3) Whoa (0-15 s): a song behind you, then a whale the size of a ship glides a few meters over your head. 4) Reaction: Bix the lantern fish follows your eyes and wiggles when you look at him; in total darkness Oona's giant eye appears right behind you, leans in while you are still and drifts back if you move. 5) Tomorrow: a whale eye bigger than you at the glass, then her whole body lighting up the sea.",
   "ad_windows": [
    [
-    43,
-    56
+    42,
+    55
    ],
    [
     6,
     14
    ],
    [
-    58,
-    67
+    59,
+    68
    ]
   ],
   "ad_lines": [
@@ -63,6 +63,6 @@
    "Look up.",
    "She carries you to the sunrise."
   ],
-  "probe_sec": null
+  "probe_sec": 71.6
  }
 ]

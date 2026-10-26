@@ -225,8 +225,8 @@ function autoLook(dt){const T=st.t,P=st.pt;
  if(st.phase==="dark"){if(st.pt>4.6){oonaEyeWorld(st.eyeSide,tmpV);lookToward(tmpV,dt,1.5);}return;}
  if(st.phase==="eye"){oonaEyeWorld(st.eyeSide,tmpV);lookToward(tmpV,dt,2);return;}
  if(st.phase==="lights"){if(P<4){oonaEyeWorld(st.eyeSide,tmpV);lookToward(tmpV,dt,2);}else{tmpV.copy(oona.position).add(new V(0,0,-14));lookToward(tmpV,dt,0.8);}return;}
- if(st.phase==="rise"){tmpV.set(rig.position.x,rig.position.y+(P<5?-12:40),rig.position.z-20);lookToward(tmpV,dt,1);return;}
- if(st.phase==="surface"){tmpV.copy(oona.position).add(new V(0,2,0));lookToward(tmpV,dt,1.2);}}
+ if(st.phase==="rise"){tmpV.set(rig.position.x,rig.position.y+(P<5?-10:30),rig.position.z-(P<5?16:30));lookToward(tmpV,dt,1);return;}
+ if(st.phase==="surface"){oonaEyeWorld(1,tmpV);tmpV.y+=1.5;lookToward(tmpV,dt,1.2);}}
 const Q=new THREE.Quaternion(),M=new THREE.Matrix4(),bx=new V(),by=new V(),bz=new V();
 function placeBroadside(eyeW,toCam){/* put Oona so her eye is at eyeW and that side faces the camera */
  bx.copy(toCam).setY(0).normalize();if(st.eyeSide===0)bx.negate();bz.crossVectors(bx,UP).normalize();by.crossVectors(bz,bx).normalize();M.makeBasis(bx,by,bz);oona.quaternion.setFromRotationMatrix(M);
@@ -250,7 +250,7 @@ function update(dt){const T=st.t+=dt;st.pt+=dt;
  const fc=new THREE.Color(0.04*0.55,0.3*0.5,0.42*0.5).lerp(new THREE.Color(0.003,0.01,0.025),depthK);fc.r+=0.02*st.glow;fc.g+=0.12*st.glow;fc.b+=0.2*st.glow;fc.lerp(new THREE.Color(0.85,0.62,0.5),st.above);
  scene.fog.color.copy(fc);renderer.setClearColor(fc);scene.fog.far=70+st.glow*50+st.above*900;scene.fog.near=2+st.above*60;
  hemi.intensity=0.12+0.5*(1-depthK)+0.35*st.glow+0.6*st.above;
- surfM.opacity=under?0.55:1;surfM.color.setHex(under?0x7fd8e8:0x1c5470);sunGl.material.opacity=st.above;window.__cable.visible=st.above<0.5;
+ surfM.opacity=under?0.55:0.82;surfM.color.setHex(under?0x7fd8e8:0x1c5470);sunGl.material.opacity=st.above;window.__cable.visible=st.above<0.5;
  /* snow drifts past (moves up when we sink) */
  {const p=snowG.attributes.position.array;const dy=(st._ld===undefined?0:st.depth-st._ld);st._ld=st.depth;for(let i=0;i<SN;i++){let y=p[i*3+1]-dy+dt*0.08;if(y>30)y-=60;if(y<-30)y+=60;p[i*3+1]=y;}snowG.attributes.position.needsUpdate=true;snow.position.copy(rig.position);snowM.opacity=0.7*(1-st.above);}
  /* lamp */
@@ -329,13 +329,13 @@ function story(dt,T){const P=st.pt;
   return;}
  if(st.phase==="rise"){
   OZ.u.wave.value=1.2;st.glow=Math.max(0.4,1-P*0.05);
-  oona.position.set(rig.position.x,rig.position.y-8,rig.position.z-2);oona.lookAt(rig.position.x,rig.position.y+40,rig.position.z-6);
+  oona.position.set(rig.position.x,rig.position.y-9,rig.position.z-12);oona.lookAt(rig.position.x,rig.position.y+40,rig.position.z-22);
   if(P>2)once("r1",()=>{song(oona.position.clone(),true);});
   if(P>5)once("r2",()=>say("Up, up, up! I see the light!",3000));
   if(st.depth>=1.15){setPhase("surface");st.glow=0;}
   return;}
  if(st.phase==="surface"){
-  const k=Math.min(1,P/3);oona.position.set(rig.position.x+7,-3.2+Math.sin(T*0.6)*0.2,rig.position.z-12+k*2);oona.lookAt(oona.position.x+3,-3.2,oona.position.z+20);
+  const k=Math.min(1,P/3);oona.position.set(rig.position.x+10,-1.6+k*0.6+Math.sin(T*0.6)*0.2,rig.position.z-13);oona.lookAt(oona.position.x-20,oona.position.y,oona.position.z);
   OZ.u.wave.value=1.2;
   if(P>1)once("s1",()=>{noiseHit(1.5,0.4,1200,0.5);spout();});
   if(P>2.5)once("s2",()=>say("She says: thank you, little light.",3800));
@@ -343,7 +343,7 @@ function story(dt,T){const P=st.pt;
  }}
 /* spout */
 const spoutP=new THREE.Points(new THREE.BufferGeometry(),new THREE.PointsMaterial({color:0xffffff,size:0.35,transparent:true,opacity:0.8}));scene.add(spoutP);const SP=[];
-function spout(){SP.length=0;for(let i=0;i<220;i++)SP.push({p:oona.position.clone().add(new V(0,5,6)),v:new V((Math.random()-0.5)*2,6+Math.random()*7,(Math.random()-0.5)*2),l:1+Math.random()});}
+function spout(){SP.length=0;for(let i=0;i<220;i++)SP.push({p:oona.localToWorld(new V(0,R*0.8,8)),v:new V((Math.random()-0.5)*2,6+Math.random()*7,(Math.random()-0.5)*2),l:1+Math.random()});}
 function updSpout(dt){if(!SP.length)return;const a=new Float32Array(SP.length*3);SP.forEach((s,i)=>{s.v.y-=9.8*dt;s.p.addScaledVector(s.v,dt);s.l-=dt*0.5;a.set([s.p.x,s.p.y,s.p.z],i*3);});spoutP.geometry.setAttribute("position",new THREE.BufferAttribute(a,3));spoutP.material.opacity=Math.max(0,Math.min(0.8,SP[0].l));}
 function updateBix(dt,T){camera.getWorldPosition(tmpV2);const h=new V(fwd.x,0,fwd.z);if(h.lengthSq()<1e-4)h.set(0,0,-1);h.normalize();
  const side=new V().crossVectors(h,UP).normalize();
