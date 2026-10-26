@@ -46,7 +46,7 @@ button.primary{background:var(--sea);color:#03202a}
 (function(){"use strict";
 const $=id=>document.getElementById(id);const V=THREE.Vector3;
 const canvas=$("stage");const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(innerWidth,innerHeight,false);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));try{if(location.hash==="#auto")renderer.setPixelRatio(1);}catch(e){}renderer.setSize(innerWidth,innerHeight,false);
 renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType("local");
 const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x062436,2,70);
 const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,0.05,3000);const rig=new THREE.Group();rig.add(camera);scene.add(rig);
@@ -167,7 +167,7 @@ function initAudio(){if(A.ctx){A.ctx.resume&&A.ctx.resume();return;}const C=wind
  const s=c.createBufferSource();s.buffer=n;s.loop=true;const lp=c.createBiquadFilter();lp.type="lowpass";lp.frequency.value=240;A.rumble=c.createGain();A.rumble.gain.value=0.35;s.connect(lp);lp.connect(A.rumble);A.rumble.connect(A.master);s.start();
  const s2=c.createBufferSource();s2.buffer=n;s2.loop=true;const hp=c.createBiquadFilter();hp.type="bandpass";hp.frequency.value=900;hp.Q.value=0.4;A.waves=c.createGain();A.waves.gain.value=0;s2.connect(hp);hp.connect(A.waves);A.waves.connect(A.master);s2.start();}
 function setP(p,v){if(p.positionX){p.positionX.value=v.x;p.positionY.value=v.y;p.positionZ.value=v.z;}else p.setPosition(v.x,v.y,v.z);}
-function pan(pos){const c=A.ctx,p=c.createPanner();p.panningModel="HRTF";p.distanceModel="inverse";p.refDistance=8;p.rolloffFactor=0.45;setP(p,pos);p.connect(A.master);return p;}
+function pan(pos){const c=A.ctx,p=c.createPanner();p.panningModel=st.auto?"equalpower":"HRTF";p.distanceModel="inverse";p.refDistance=8;p.rolloffFactor=0.45;setP(p,pos);p.connect(A.master);return p;}
 function updListener(){if(!A.ctx)return;const l=A.ctx.listener;camera.getWorldPosition(tmpV2);if(l.positionX){l.positionX.value=tmpV2.x;l.positionY.value=tmpV2.y;l.positionZ.value=tmpV2.z;l.forwardX.value=fwd.x;l.forwardY.value=fwd.y;l.forwardZ.value=fwd.z;l.upX.value=0;l.upY.value=1;l.upZ.value=0;}else{l.setPosition(tmpV2.x,tmpV2.y,tmpV2.z);l.setOrientation(fwd.x,fwd.y,fwd.z,0,1,0);}}
 function voice(f,len,vol,dest,type,glide){const c=A.ctx,t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f[0],t);for(let i=1;i<f.length;i++)o.frequency.linearRampToValueAtTime(f[i],t+len*i/(f.length-1));
  const lfo=c.createOscillator(),lg=c.createGain();lfo.frequency.value=4.5;lg.gain.value=glide||3;lfo.connect(lg);lg.connect(o.frequency);lfo.start(t);lfo.stop(t+len+0.1);
@@ -347,9 +347,9 @@ function spout(){SP.length=0;for(let i=0;i<220;i++)SP.push({p:oona.position.clon
 function updSpout(dt){if(!SP.length)return;const a=new Float32Array(SP.length*3);SP.forEach((s,i)=>{s.v.y-=9.8*dt;s.p.addScaledVector(s.v,dt);s.l-=dt*0.5;a.set([s.p.x,s.p.y,s.p.z],i*3);});spoutP.geometry.setAttribute("position",new THREE.BufferAttribute(a,3));spoutP.material.opacity=Math.max(0,Math.min(0.8,SP[0].l));}
 function updateBix(dt,T){camera.getWorldPosition(tmpV2);const h=new V(fwd.x,0,fwd.z);if(h.lengthSq()<1e-4)h.set(0,0,-1);h.normalize();
  const side=new V().crossVectors(h,UP).normalize();
- let want=tmpV2.clone().addScaledVector(h,2.4).addScaledVector(side,0.75).add(new V(0,-0.62+Math.max(-0.6,Math.min(0.6,fwd.y*1.4)),0));
- if(st.phase==="eye"||st.phase==="lights"){want=tmpV2.clone().addScaledVector(h,2.2).addScaledVector(side,1.1).add(new V(0,-0.75,0));}
- if(st.phase==="rise"||(st.phase==="sink"&&st.t>7&&st.t<12.5))want=tmpV2.clone().addScaledVector(h,2.3).addScaledVector(side,0.8).add(new V(0,-0.6+fwd.y*1.2,0));
+ let want=tmpV2.clone().addScaledVector(h,2.4).addScaledVector(side,0.2+0.5*Math.min(1,camera.aspect)).add(new V(0,-0.62+Math.max(-0.6,Math.min(0.6,fwd.y*1.4)),0));
+ if(st.phase==="eye"||st.phase==="lights"){want=tmpV2.clone().addScaledVector(h,2.2).addScaledVector(side,0.45+0.65*Math.min(1,camera.aspect)).add(new V(0,-0.75,0));}
+ if(st.phase==="rise"||(st.phase==="sink"&&st.t>7&&st.t<12.5))want=tmpV2.clone().addScaledVector(h,2.3).addScaledVector(side,0.25+0.55*Math.min(1,camera.aspect)).add(new V(0,-0.6+fwd.y*1.2,0));
  bix.position.lerp(want,Math.min(1,dt*1.6));const d=bix.position.clone().sub(tmpV2);if(d.length()<2.0)bix.position.copy(tmpV2).addScaledVector(d.normalize(),2.0);
  bix.position.y+=Math.sin(T*2.2)*0.003;
  bix.lookAt(tmpV2);st.bixSpin=Math.max(0,st.bixSpin-dt*1.2);
@@ -358,7 +358,7 @@ function updateBix(dt,T){camera.getWorldPosition(tmpV2);const h=new V(fwd.x,0,fw
  bix.rotateY(st.bixSpin*6.283);bix.rotateZ(Math.sin(T*3)*0.12+(looked?Math.sin(T*12)*0.15:0));
  BX.tail.rotation.y=Math.sin(T*(looked?14:8))*0.5;BX.lf.rotation.z=0.6+Math.sin(T*9)*0.4;BX.rf.rotation.z=-0.6-Math.sin(T*9)*0.4;
  const gw=1+(looked?0.4:0)+(st.lamp<0.1&&st.phase!=="surface"?0.6:0);BX.glow.scale.setScalar(0.45*gw);BX.light.intensity=0.9*gw*(1-st.above*0.8);}
-window.__setAuto=v=>{st.auto=v;TRK.off=true;};window.__start=start;window.__st=st;
+window.__setAuto=v=>{st.auto=v;TRK.off=true;};window.__dbg={bell,sky,oona,snow,renderer,scene,bix};window.__start=start;window.__st=st;
 /* ---------- VR ---------- */
 const ctl=renderer.xr.getController(0);ctl.addEventListener("select",()=>{if(st.mode==="play")tapAt(innerWidth/2,innerHeight/2);});rig.add(ctl);
 const ctl2=renderer.xr.getController(1);ctl2.addEventListener("select",()=>{if(st.mode==="play")tapAt(innerWidth/2,innerHeight/2);});rig.add(ctl2);
