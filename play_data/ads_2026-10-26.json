@@ -1,0 +1,64 @@
+{
+ "date": "2026-10-26",
+ "brand": "TremenVR",
+ "blogId": 7623368,
+ "range": "2026-10-24..2026-10-26 JST",
+ "note": "w02 posts (2026-10-26 11:45-12:02 JST, all PUBLISHED) not yet in Metricool analytics; numbers below are w01 (10-24) posts. Follower gains: instagram 0 (followers 0->? not reported), others not reported.",
+ "posts": [
+  {
+   "work": "w01",
+   "network": "instagram",
+   "type": "REEL",
+   "url": "https://www.instagram.com/reel/De4LDyrDQJH/",
+   "views": 1696,
+   "likes": 23,
+   "interactions": 25
+  },
+  {
+   "work": "w01",
+   "network": "facebook",
+   "type": "REEL",
+   "url": "https://www.facebook.com/reel/3495896733912069/",
+   "impressions": 236,
+   "interactions": 0
+  },
+  {
+   "work": "w01",
+   "network": "tiktok",
+   "url": "https://www.tiktok.com/@tremenvr/video/7700162000755657990",
+   "views": 168,
+   "likes": 4
+  },
+  {
+   "work": "w01",
+   "network": "bluesky",
+   "interactions": 11
+  },
+  {
+   "work": "w01",
+   "network": "threads",
+   "impressions": 8,
+   "interactions": 0
+  },
+  {
+   "work": "w01",
+   "network": "youtube",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=SZRYY19Wmqw",
+   "views": null
+  },
+  {
+   "work": "w01",
+   "network": "youtube",
+   "type": "short",
+   "url": "https://www.youtube.com/watch?v=tVNssFcaPZw",
+   "views": null
+  }
+ ],
+ "followers": {
+  "instagram": {
+   "followers_gained": 0
+  }
+ },
+ "summary": "Instagram Reels strongest by far (1696 views), then Facebook Reel 236 and TikTok 168; YouTube views not reported yet."
+}

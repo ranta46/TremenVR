@@ -1,0 +1,7 @@
+{
+ "date": "2026-10-26",
+ "source": "https://thehush.goatcounter.com",
+ "ok": false,
+ "error": "curl: (56) CONNECT tunnel failed, response 403 (cloud proxy policy blocks thehush.goatcounter.com)",
+ "paths": {}
+}
