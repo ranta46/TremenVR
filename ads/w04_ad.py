@@ -15,6 +15,11 @@ SEG=[(rng(44,48),"Something huge is behind you."),
      (rng(5,12),"Turn around... slowly."),
      (rng(80,90),"They only move when you don't look."),
      (rng(90,99),"Hold her gaze until the sun comes up.")]
+if not P:  # landscape: the 44 s shot is wide, so open on the 8-12 s close face instead
+    SEG=[(rng(8,12),"Something huge is behind you."),
+         (rng(44,48),"Turn around... slowly."),
+         (rng(80,90),"They only move when you don't look."),
+         (rng(90,99),"Hold her gaze until the sun comes up.")]
 # hook first: 44 s is the giant's face right in front of you
 for fs,t in SEG: assert len(fs)>60, (t,len(fs))
 URL="ranta46.github.io/TremenVR/moss-giants"
@@ -95,5 +100,5 @@ fade=np.minimum(1,t/0.2)*np.clip((total-t)/1.0,0,1); mix=np.tanh(mix*1.5)*0.85*f
 sdat=np.stack([mix,mix],1)
 with wave.open(OUT+"/sound.wav","wb") as w:
     w.setnchannels(2);w.setsampwidth(2);w.setframerate(SR);w.writeframes((sdat*32767).astype(np.int16).tobytes())
-subprocess.run(["ffmpeg","-y","-loglevel","error","-framerate","30","-i",OUT+"/o%05d.jpg","-i",OUT+"/sound.wav","-c:v","libx264","-preset","medium","-crf","22","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-shortest","-movflags","+faststart",os.environ.get("AD_MP4","ad.mp4")],check=True)
+subprocess.run(["ffmpeg","-y","-loglevel","error","-framerate","30","-i",OUT+"/o%05d.jpg","-i",OUT+"/sound.wav","-c:v","libx264","-preset","veryfast","-crf","22","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-shortest","-movflags","+faststart",os.environ.get("AD_MP4","ad.mp4")],check=True)
 print("done")
