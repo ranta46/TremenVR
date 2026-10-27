@@ -30,3 +30,20 @@ A tiny round lantern fish, blue-teal with a pale belly, big round white eyes wit
 and a little warm-yellow light on a curved stalk over his head. Nervous but loyal, talks a lot when scared, gets brave for friends.
 Believes "a small light is still a light." Speaks in short, quick, excited lines ("Look up! LOOK UP!", "Shh... Hear that?"),
 little squeaky blips when he talks. Swims at the glass and follows your eyes; wiggles and spins when you look at him.
+## Nib (w04 The Moss Giants)
+A tiny paper-lantern spirit of Mossmere, about the size of a pear. Round warm-yellow paper body with dark red ribs,
+brown caps on top and bottom, two small black eyes, pink cheeks, a little smile, thin stick legs and one green leaf on top.
+Glows warm; the glow dims when a giant pokes him. Small, jumpy and a bit dramatic ("Eek!"), but loyal and brave.
+Believes "every game is fun if you play it together." Speaks in short whispers and squeaks ("Shh...", "Behind you!",
+"Eek! Tag!"), little bell-like blips when he talks. Stays near your feet, follows your eyes and wiggles when you look at him.
+## The Moss Giants (w04)
+Round stone giants about 3 m tall, grey stone with thick green moss on their heads, shoulders and hands. Heavy brow,
+big round nose, two glowing amber eyes, a small round "o" mouth (a wide smile when happy). Stubby legs, long heavy arms.
+Playful, like big children. They only move when nobody is looking at them (the stone game), and freeze in silly poses
+the moment you look. Never speak: they hop with heavy thuds, grind like stone, and laugh "ho ho ho". Not evil:
+they just want someone to play with until morning. At sunrise small flowers open on their moss and they sleep as stones.
+## Gran Mossa (w04)
+The oldest Moss Giant, as tall as the cedar trees (about 26 m). Same look as the Moss Giants but huge, with long moss
+hair hanging around her face. Slow, kind, a little mischievous. Rises from the ground at the end of the night.
+Leans down and reaches for you only while you look away; if you hold her gaze, she smiles and the sun comes up behind her.
+Never speaks; laughs very deep and slow. Believes the night game ends only when someone is brave enough to look her in the eye.

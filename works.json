@@ -64,5 +64,47 @@
    "She carries you to the sunrise."
   ],
   "probe_sec": 71.6
+ },
+ {
+  "id": "w04",
+  "date": "2026-10-27",
+  "title": "The Moss Giants",
+  "world": "Mossmere",
+  "characters": [
+   "Nib",
+   "the Moss Giants",
+   "Gran Mossa"
+  ],
+  "blurb": "A ring of mossy stone giants stands around you in a moonlit forest. They only move when you don't look. Keep them away from Nib the lantern spirit until sunrise, then look up into the eyes of Gran Mossa.",
+  "path": "w04/",
+  "minutes": 2,
+  "slug": "moss-giants",
+  "url": "https://ranta46.github.io/TremenVR/moss-giants/",
+  "vr_hook": "1) Not a flat game: the danger is always where you are NOT looking - behind you and at your sides - so you spin your whole body to the grinding-stone sound. 2) Body action: look around, turn behind you, then look up and hold your gaze. 3) Whoa (0-15 s): stone steps behind you; you turn and a 3 m mossy giant is bent down right in front of your face, eyes glowing. 4) Reaction: every giant faces you, freezes the moment you look and is in a new silly pose when you look back; Nib wiggles when you look at him; Gran Mossa leans down and reaches for you only while you look away, and smiles when you hold her gaze. 5) Tomorrow: turning around into a huge stone face, and looking up at a giant as tall as the trees while the sun rises.",
+  "ad_windows": [
+   [
+    80,
+    90
+   ],
+   [
+    5,
+    12
+   ],
+   [
+    44,
+    48
+   ],
+   [
+    90,
+    99
+   ]
+  ],
+  "ad_lines": [
+   "Something huge is behind you.",
+   "Turn around... slowly.",
+   "They only move when you don't look.",
+   "Hold her gaze until the sun comes up."
+  ],
+  "probe_sec": 101.2
  }
 ]
