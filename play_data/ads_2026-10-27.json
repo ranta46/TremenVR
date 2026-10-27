@@ -1,0 +1,121 @@
+{
+ "date": "2026-10-27",
+ "brand": "TremenVR",
+ "blogId": 7623368,
+ "range": "2026-10-24..2026-10-27 JST",
+ "note": "Cumulative per-post numbers from Metricool analytics as of 2026-10-27 17:2x JST. w03 (10-26 19:00) posts are under 1 day old. YouTube views mostly not reported yet. Facebook POST-type video posts not in FB posts analytics yet (only w01 feed post, 0). Threads/Bluesky/Pinterest per-post analytics not pulled.",
+ "posts": [
+  {
+   "work": "w03",
+   "network": "instagram",
+   "type": "REEL",
+   "url": "https://www.instagram.com/reel/De9Bq_FD1WJ/",
+   "views": 126,
+   "likes": 1,
+   "interactions": 1,
+   "reach": 126
+  },
+  {
+   "work": "w02",
+   "network": "instagram",
+   "type": "REEL",
+   "url": "https://www.instagram.com/reel/De8QabBDygU/",
+   "views": 156,
+   "likes": 0,
+   "interactions": 1,
+   "reach": 137
+  },
+  {
+   "work": "w01",
+   "network": "instagram",
+   "type": "REEL",
+   "url": "https://www.instagram.com/reel/De4LDyrDQJH/",
+   "views": 1697,
+   "likes": 23,
+   "interactions": 25,
+   "reach": 1550
+  },
+  {
+   "work": "w03",
+   "network": "tiktok",
+   "url": "https://www.tiktok.com/@tremenvr/video/7700915198613703944",
+   "views": 62,
+   "likes": 0
+  },
+  {
+   "work": "w02",
+   "network": "tiktok",
+   "url": "https://www.tiktok.com/@tremenvr/video/7700803942233558279",
+   "views": 108,
+   "likes": 1
+  },
+  {
+   "work": "w01",
+   "network": "tiktok",
+   "url": "https://www.tiktok.com/@tremenvr/video/7700162000755657990",
+   "views": 168,
+   "likes": 4
+  },
+  {
+   "work": "w03",
+   "network": "youtube",
+   "type": "short",
+   "url": "https://www.youtube.com/watch?v=e2Xdwa0Drqg",
+   "views": null
+  },
+  {
+   "work": "w03",
+   "network": "youtube",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=UKnO0Wij6rs",
+   "views": null
+  },
+  {
+   "work": "w02",
+   "network": "youtube",
+   "type": "short",
+   "url": "https://www.youtube.com/watch?v=HgHTwXr1bS0",
+   "views": null
+  },
+  {
+   "work": "w02",
+   "network": "youtube",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=buzV3Krlh0Y",
+   "views": null
+  },
+  {
+   "work": "w01",
+   "network": "youtube",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=SZRYY19Wmqw",
+   "views": null
+  },
+  {
+   "work": "w01",
+   "network": "youtube",
+   "type": "short",
+   "url": "https://www.youtube.com/watch?v=tVNssFcaPZw",
+   "views": 5,
+   "likes": 1
+  },
+  {
+   "work": "w01",
+   "network": "facebook",
+   "type": "POST",
+   "url": "https://facebook.com/122094787233530450/posts/122094770577530450",
+   "impressions": 0,
+   "video_views": 0,
+   "link_clicks": 0
+  }
+ ],
+ "followers": {
+  "instagram": {
+   "followers": 0,
+   "followers_gained": 0,
+   "followers_lost": 0
+  },
+  "others": "not reported"
+ },
+ "summary": "Instagram Reels is still the strongest network (w01 1697 views; w02 156, w03 126), TikTok second (168/108/62). Newer works get far fewer views than w01. No follower gains reported. YouTube views not reported yet."
+}
