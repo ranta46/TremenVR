@@ -106,5 +106,46 @@
    "Hold her gaze until the sun comes up."
   ],
   "probe_sec": 101.2
+ },
+ {
+  "id": "w05",
+  "date": "2026-10-28",
+  "title": "The Aurora Peak",
+  "world": "Highcairn",
+  "characters": [
+   "Tink",
+   "Vela"
+  ],
+  "blurb": "Stand on a needle of rock 300 m above the clouds. Turn to the bells you hear all around you to give Vela, a sky serpent made of light, her song back. Then follow her with your eyes as she circles you.",
+  "path": "w05/",
+  "minutes": 2,
+  "slug": "aurora-peak",
+  "url": "https://ranta46.github.io/TremenVR/aurora-peak/",
+  "vr_hook": "1) Not a flat game: the bells ring from where you can't see (behind you, far below, high above) and you find them only by turning your body to the sound; a 200 m serpent circles your tiny peak, under your feet and over your head. 2) Body action: look down, turn to a sound, look up, follow with your eyes, reach out to touch. 3) Whoa (0-15 s): look down at 300 m of air under your feet, then a song behind you and Vela's huge glowing face slides past a few meters away. 4) Reaction: Tink follows your eyes, hops when you look at him and flies toward a bell you miss; Vela's eyes always follow you, she waits and calls if you lose her, comes face to face and closes her eyes when you touch her nose. 5) Tomorrow: standing on a needle above the clouds while a dragon of light bursts up out of the storm right in front of you.",
+  "ad_windows": [
+   [
+    56,
+    64
+   ],
+   [
+    9,
+    17
+   ],
+   [
+    78,
+    86
+   ],
+   [
+    25,
+    31
+   ]
+  ],
+  "ad_lines": [
+   "Look up.",
+   "Don't look down... she's behind you.",
+   "She came to say thank you.",
+   "Turn to the bell you hear."
+  ],
+  "probe_sec": 93.3
  }
 ]

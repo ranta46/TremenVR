@@ -47,3 +47,17 @@ The oldest Moss Giant, as tall as the cedar trees (about 26 m). Same look as the
 hair hanging around her face. Slow, kind, a little mischievous. Rises from the ground at the end of the night.
 Leans down and reaches for you only while you look away; if you hold her gaze, she smiles and the sun comes up behind her.
 Never speaks; laughs very deep and slow. Believes the night game ends only when someone is brave enough to look her in the eye.
+## Tink (w05 The Aurora Peak)
+A tiny round bell-bird of Highcairn (the needle peaks above the cloud sea), about the size of a plum. Sky-blue body,
+white round belly, big black shiny eyes with a white sparkle, small orange beak and thin orange legs, a little gold bell
+under his chin, two long blue tail feathers with gold tips. Cheerful, curious and a little bossy; scared of storms but
+never leaves a friend. Believes "every sound deserves an answer." Speaks in short chirpy lines with "Ding!" and
+"Whoa!" ("Behind you! Follow me!", "Don't fall!"), tiny high chirps when he talks. Flies next to your eyes, follows your
+look, hops when you look at him, and flies toward a bell you can't find.
+## Vela (w05)
+The aurora sky serpent of Highcairn, about 200 m long. A long round body made of glowing light that goes from green
+at the head to cyan and violet at the tail. Pale moon-white face with a round snout, a small curved smile, two short
+glowing horns, long soft lilac whiskers and two big round eyes with gold irises. Gentle, curious and a little shy, like a
+huge friendly cat. Believes the sky is one big song and every bell on the peaks is one note of it; when the bells are
+quiet her lights fade. Never speaks: she sings in rising chime-like calls and purrs very low. Her eyes always follow you;
+she waits for you if you lose her, comes close to say thank you, and closes her eyes when you touch her nose.
