@@ -86,13 +86,13 @@ const wisps=[];seed=17;for(let i=0;i<46;i++){const s=new THREE.Sprite(new THREE.
 /* ---------- your needle of rock, and the peaks around ---------- */
 function rockGeo(rt,rb,h,sd){const g=new THREE.CylinderGeometry(rt,rb,h,12,24);const p=g.attributes.position;seed=sd;const ph=rnd()*6;for(let i=0;i<p.count;i++){const x=p.getX(i),y=p.getY(i),z=p.getZ(i);const n=1+0.18*Math.sin(y*0.15+ph+Math.atan2(z,x)*3)+0.1*Math.sin(y*0.6+x);p.setX(i,x*n);p.setZ(i,z*n);}g.computeVertexNormals();return g;}
 const rockM=new THREE.MeshLambertMaterial({color:0x4a5268,emissive:0x0b0e18});
-const pillar=new THREE.Mesh(rockGeo(1.7,9,340,2),rockM);pillar.position.y=-170.3;scene.add(pillar);
-const top=new THREE.Mesh(new THREE.CylinderGeometry(1.9,1.7,0.4,14),new THREE.MeshLambertMaterial({color:0x6c7488,emissive:0x101420}));top.position.y=-0.2;scene.add(top);
-(function(){const sm=new THREE.MeshLambertMaterial({color:0x7a8296,emissive:0x0c0f18});seed=8;for(let i=0;i<9;i++){const r=new THREE.Mesh(new THREE.DodecahedronGeometry(0.18+rnd()*0.12,0),sm);const a=rnd()*6.283,d=1.2+rnd()*0.5;r.position.set(Math.sin(a)*d,0.05,Math.cos(a)*d);scene.add(r);}
+const pillar=new THREE.Mesh(rockGeo(1.05,9,340,2),rockM);pillar.position.y=-170.3;scene.add(pillar);
+const top=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.05,0.4,14),new THREE.MeshLambertMaterial({color:0x485068,emissive:0x0a0d16}));top.position.y=-0.2;scene.add(top);
+(function(){const sm=new THREE.MeshLambertMaterial({color:0x7a8296,emissive:0x0c0f18});seed=8;for(let i=0;i<9;i++){const r=new THREE.Mesh(new THREE.DodecahedronGeometry(0.18+rnd()*0.12,0),sm);const a=rnd()*6.283,d=0.75+rnd()*0.3;r.scale.setScalar(0.6);r.position.set(Math.sin(a)*d,0.05,Math.cos(a)*d);scene.add(r);}
  /* old lantern post */
- const post=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.06,1.3,6),new THREE.MeshLambertMaterial({color:0x4a3524,emissive:0x140c06}));post.position.set(1.25,0.65,0.35);scene.add(post);
- const arm=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.04,0.04),post.material);arm.position.set(1.1,1.28,0.35);scene.add(arm);
- const lamp=new THREE.Mesh(new THREE.SphereGeometry(0.08,10,8),new THREE.MeshBasicMaterial({color:0xffd890}));lamp.position.set(0.95,1.18,0.35);scene.add(lamp);addGlow(scene,warmGlow,0.9,lamp.position,0.9);
+ const post=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.06,1.3,6),new THREE.MeshLambertMaterial({color:0x4a3524,emissive:0x140c06}));post.position.set(0.75,0.65,0.85);scene.add(post);
+ const arm=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.04,0.04),post.material);arm.position.set(0.6,1.28,0.85);scene.add(arm);
+ const lamp=new THREE.Mesh(new THREE.SphereGeometry(0.08,10,8),new THREE.MeshBasicMaterial({color:0xffd890}));lamp.position.set(0.45,1.18,0.85);scene.add(lamp);addGlow(scene,warmGlow,0.9,lamp.position,0.9);
  const pl=new THREE.PointLight(0xffc070,1.0,7,2);pl.position.copy(lamp.position);scene.add(pl);})();
 const peakM=new THREE.MeshLambertMaterial({color:0x3a425a,emissive:0x080a14});const snowM=new THREE.MeshLambertMaterial({color:0xdfe6f6,emissive:0x1a2030});
 function addPeak(x,ty,z,r,sd){const h=ty+340;const m=new THREE.Mesh(rockGeo(r*0.25,r,h,sd),peakM);m.position.set(x,ty-h/2,z);scene.add(m);const s=new THREE.Mesh(new THREE.ConeGeometry(r*0.3,r*0.5,10),snowM);s.position.set(x,ty+r*0.2,z);scene.add(s);}
@@ -112,18 +112,18 @@ const streaks=[];
 
 /* ---------- Vela, the aurora sky serpent (original character) ---------- */
 const VE={pos:new V(0,-90,60),vel:new V(0,20,-10),vb:0.35,eyeC:0,H:[],segs:[],glows:[]};
-const NS=60,SP=3.4;
+const NS=90,SP=2.3;
 (function(){const sg=new THREE.SphereGeometry(1,14,10);for(let s=0;s<NS;s++){const k=s/(NS-1);const r=Math.max(0.35,2.3*Math.pow(1-k,0.7)+(s<3?-0.4+s*0.15:0));const col=new THREE.Color().setHSL(0.38+k*0.38,0.85,0.5);
   const m=new THREE.Mesh(sg,new THREE.MeshBasicMaterial({color:col.clone()}));m.scale.setScalar(r);m.userData={r,col};scene.add(m);VE.segs.push(m);
-  if(s%2===0){const gl=addGlow(scene,s<NS*0.45?aurGlow:vioGlow,r*4.2,null,0.5);VE.glows.push([gl,s,r]);}}
+  if(s%3===0){const gl=addGlow(scene,s<NS*0.45?aurGlow:vioGlow,r*4.2,null,0.5);VE.glows.push([gl,s,r]);}}
  const hd=new THREE.Group();scene.add(hd);VE.head=hd;
  const skinM=new THREE.MeshLambertMaterial({color:0xd8f4ff,emissive:0x3a6a78});
  const sk=new THREE.Mesh(new THREE.SphereGeometry(2,24,18),skinM);sk.scale.set(1.15,0.85,1.45);hd.add(sk);
- const sn=new THREE.Mesh(new THREE.SphereGeometry(1.35,20,14),skinM);sn.scale.set(1,0.7,1.25);sn.position.set(0,-0.5,2.3);hd.add(sn);
+ const sn=new THREE.Mesh(new THREE.SphereGeometry(1.15,20,14),skinM);sn.scale.set(0.95,0.6,1.2);sn.position.set(0,-0.75,2.2);hd.add(sn);
  const dk=new THREE.MeshBasicMaterial({color:0x10182a});
- for(const sd of[-1,1]){const n=new THREE.Mesh(new THREE.CircleGeometry(0.14,10),dk);n.position.set(sd*0.42,-0.3,3.95);n.lookAt(sd*0.6,0,6);hd.add(n);}
- const mo=new THREE.Mesh(new THREE.TorusGeometry(0.75,0.06,6,18,Math.PI*0.8),dk);mo.rotation.set(0.25,0,Math.PI*1.1);mo.position.set(0,-0.95,3.2);hd.add(mo);
- VE.eyes=[];for(const sd of[-1,1]){const eg=new THREE.Group();eg.position.set(sd*1.45,0.4,1.35);hd.add(eg);
+ for(const sd of[-1,1]){const n=new THREE.Mesh(new THREE.CircleGeometry(0.07,8),dk);n.position.set(sd*0.35,-0.6,3.55);n.lookAt(sd*0.6,0,6);hd.add(n);}
+ const mo=new THREE.Mesh(new THREE.TorusGeometry(0.75,0.06,6,18,Math.PI*0.8),dk);mo.rotation.set(0.25,0,Math.PI*1.1);mo.position.set(0,-1.05,2.9);hd.add(mo);
+ VE.eyes=[];for(const sd of[-1,1]){const eg=new THREE.Group();eg.position.set(sd*1.25,0.7,1.75);hd.add(eg);
   const w=new THREE.Mesh(new THREE.SphereGeometry(0.78,20,14),new THREE.MeshBasicMaterial({color:0xfafcff}));eg.add(w);
   const ir=new THREE.Mesh(new THREE.SphereGeometry(0.52,18,12),new THREE.MeshBasicMaterial({color:0xffb52e}));ir.position.set(sd*0.06,0,0.36);eg.add(ir);
   const pu=new THREE.Mesh(new THREE.SphereGeometry(0.3,14,10),dk);pu.position.set(sd*0.08,0,0.62);eg.add(pu);
@@ -221,14 +221,14 @@ function start(vr){initAudio();askGyro();
  Object.assign(st,{mode:"play",t:0,pt:0,said:{},lit:0,round:0,nextAt:0,lastLit:0,tinkSpin:0,shake:0,flash:0,cloudY:-220,su:0,lost:0,hint:null,vt0:0,downAt:0});setPhase("edge");
  BELLS.forEach(b=>{b.st="idle";b.age=0;b.rt=0;b.dwell=0;b.hint=0;b.cr.material.color.setHex(0x52607a);b.gl.material.map=iceGlow;b.gl.material.opacity=0.18;b.gl.scale.setScalar(7);b.ring.material.opacity=0;});
  streaks.forEach(s=>scene.remove(s.sp));streaks.length=0;
- VE.vb=0.35;VE.eyeC=0;veFace=0;veReset(new V(0,-110,60),new V(0,1,-0.2).normalize());skyU.aur.value=0.25;
+ VE.vb=0.35;VE.eyeC=0;veFace=0;veReset(new V(0,-110,60),new V(0,1,-0.2).normalize());skyU.aur.value=0.5;
  $("intro").hidden=true;$("ending").hidden=true;$("reticle").hidden=false;$("hud").hidden=true;
  if(!vr&&!st.auto){look.yaw=0;look.pitch=-0.1;}gyro.aligned=false;
  trkOnce("start-"+(vr?"vr":(matchMedia("(pointer:coarse)").matches?"phone":"pc")));trkOnce("from-"+TRK.src);
  say("Hi! I'm Tink. Welcome to the top of the sky!",3200);}
 function lookToward(p,dt,k){camera.getWorldPosition(tmpV2);tmpV.copy(p).sub(tmpV2);const ty=Math.atan2(-tmpV.x,-tmpV.z),tp=Math.atan2(tmpV.y,Math.hypot(tmpV.x,tmpV.z));const s=Math.min(1,dt*(k||2));look.yaw+=angDiff(ty,look.yaw)*s;look.pitch+=(Math.max(-1.45,Math.min(1.45,tp))-look.pitch)*s;}
 function autoLook(dt){const P=st.pt;
- if(st.phase==="edge"){if(P<3.2){lookToward(new V(-0.5,1.1,-6),dt,1.5);return;}if(!st.vt0){lookToward(new V(1.5,-12,-4),dt,1.6);return;}const vt=P-st.vt0;if(vt<0.8)return;if(vt<13){lookToward(VE.pos,dt,vt<2?1.6:2.6);return;}lookToward(new V(-12,4,-40),dt,1.2);return;}
+ if(st.phase==="edge"){if(P<3.2){lookToward(new V(-0.5,1.1,-6),dt,1.5);return;}if(!st.vt0){lookToward(new V(1,-12,-9),dt,1.6);return;}const vt=P-st.vt0;if(vt<0.8)return;if(vt<13){lookToward(VE.pos,dt,vt<2?1.6:2.6);return;}lookToward(new V(-12,4,-40),dt,1.2);return;}
  if(st.phase==="echo"){let tg=null;BELLS.forEach(b=>{if(b.st==="ring"&&b.age>1.1&&(!tg||b.age>tg.age))tg=b;});if(tg){lookToward(tg.p,dt,2.4);}return;}
  if(st.phase==="storm"){tmpV.copy(st.fdir).multiplyScalar(30);tmpV.y=-30;lookToward(tmpV,dt,1.2);return;}
  if(st.phase==="rise"||st.phase==="spiral"){lookToward(VE.pos,dt,st.phase==="rise"?3.2:2.6);return;}
@@ -268,7 +268,7 @@ function story(dt,T){const P=st.pt;
   if(P>3.3)once("e1",()=>say("Now... look down. Slowly.",3000));
   if(P>3.6&&fwd.y<-0.55)once("down",()=>{trkOnce("look-down");say("Whoa! Don't fall!",2200);st.downAt=P;});
   if(!st.vt0&&((st.said.down&&P>st.downAt+2.2)||P>9.5)){st.vt0=P;velaCall(true);say("Hear that? Behind you!",3000);}
-  if(st.vt0){const vt=P-st.vt0,u=Math.min(1.15,vt/12),th=u*2.3*Math.PI,R=24-14*Math.sin(Math.PI*Math.min(1,u)),y=-48+u*88;
+  if(st.vt0){const vt=P-st.vt0,u=Math.min(1.15,vt/12),th=u*2.3*Math.PI,R=24-14*Math.sin(Math.PI*Math.min(1,u)),y=-30+u*70;
    if(u<1.12)veMove(new V(Math.sin(th)*R,y,Math.cos(th)*R),dt,55,3);else veMove(skyCircle(T,150,70),dt,40,1.2);
    if(vt>1&&vt<14&&angTo(VE.head.position)<0.6&&VE.pos.distanceTo(camera.position)<30)once("seev",()=>trkOnce("whoa"));
    if(vt>4.2)once("e3",()=>say("It's Vela, the sky serpent!",3000));
@@ -313,7 +313,7 @@ function story(dt,T){const P=st.pt;
   if(fol){st.lost=0;once("sp0",()=>{trkOnce("follow");say("Follow her with your eyes!",3000);});}
   else{st.lost+=dt;if(st.lost>2.6){st.lost=0;velaCall(false);say("She's waiting for you! "+dirWord(VE.pos),2400);}}
   if(st.su>0.45)once("sp1",()=>say("She's singing again!",2600));
-  if(st.su>=1){setPhase("face");trkOnce("face");const h=new V(VE.pos.x,0,VE.pos.z);if(h.lengthSq()<1e-4)h.set(0,0,-1);h.normalize();st.fpos.copy(h).multiplyScalar(7.2);st.fpos.y=1.3;}
+  if(st.su>=1){setPhase("face");trkOnce("face");const h=new V(VE.pos.x,0,VE.pos.z);if(h.lengthSq()<1e-4)h.set(0,0,-1);h.normalize();st.fpos.copy(h).multiplyScalar(11);st.fpos.y=1.0;}
   return;}
  if(st.phase==="face"){veFace=Math.min(1,veFace+dt);tmpV.copy(st.fpos);tmpV.y+=Math.sin(T*0.8)*0.25;veMove(tmpV,dt,14,1.6);
   if(P>0.8)once("f1",()=>say("She came to say thank you.",2600));
