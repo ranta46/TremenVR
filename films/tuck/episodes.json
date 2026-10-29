@@ -7,6 +7,9 @@
   "hook": "Who writes the letters?",
   "next_address": "The reply letter says: \"To the last lamp on the bridge.\"",
   "clue": "The house window went dark right before the reply came out.",
-  "posted": "2026-10-28 20:35 JST (all networks)"
+  "posted": "2026-10-28 20:35 JST (all networks)",
+  "status": "posted",
+  "video_16x9": "tremenvr/tuck/tuck_ep01_16x9.mp4",
+  "video_9x16": "tremenvr/tuck/tuck_ep01_9x16.mp4"
  }
 ]

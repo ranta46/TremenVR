@@ -24,3 +24,13 @@ Read BIBLE.md first. Character and world must stay consistent.
    total = film length + 6 s end card.
 3. tools/post.py raw.mp4 with EP, TITLE, HOOK, NEXT env -> tuck_epNN_16x9.mp4 and tuck_epNN_9x16.mp4.
 4. Upload both to ranta-videos/tremenvr/tuck/ and post (see episodes.json for history).
+
+## Stock system (so a day is never missed) — since 2026-10-29
+- episodes.json "status": "rendering" (render started on the PC) -> "stock" (finished mp4s pushed to
+  ranta-videos/tremenvr/tuck/, not posted yet) -> "posted".
+- PC runs (10:47 and 15:47): first finish any done render into stock; then, if stock < 3 and no render is
+  running, build the next episode and start its render.
+- Cloud run (19:13, no PC needed): post the OLDEST "stock" episode to all networks, mark "posted".
+  If there is no stock, post a 10-15 s teaser cut from the latest posted episode (never skip a day).
+- Cloud runs (11:17, 16:17, 21:41): check that the PC tasks are not suspended (device_absent), re-enable
+  them and alert the owner; 21:41 also fills any network that has no post today.
