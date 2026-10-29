@@ -10,7 +10,10 @@
   "posted": "2026-10-28 20:35 JST (all networks)",
   "status": "posted",
   "video_16x9": "tremenvr/tuck/tuck_ep01_16x9.mp4",
-  "video_9x16": "tremenvr/tuck/tuck_ep01_9x16.mp4"
+  "video_9x16": "tremenvr/tuck/tuck_ep01_9x16.mp4",
+  "promo_segs": "12-16,20-23,46-56,64-68",
+  "promo_video": "tremenvr/tuck/tuck_promo_ep01.mp4",
+  "promo_posted": "scheduled 2026-10-30 12:13 JST"
  },
  {
   "ep": 2,

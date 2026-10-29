@@ -34,3 +34,12 @@ Read BIBLE.md first. Character and world must stay consistent.
   If there is no stock, post a 10-15 s teaser cut from the latest posted episode (never skip a day).
 - Cloud runs (11:17, 16:17, 21:41): check that the PC tasks are not suspended (device_absent), re-enable
   them and alert the owner; 21:41 also fills any network that has no post today.
+
+## Daily ad short (cloud, 12:13 JST) — since 2026-10-30
+- Target = the latest "posted" episode whose "promo_posted" is empty (if none, the latest posted episode
+  again with different segments). Make a contact sheet (ffmpeg fps=1/4,tile) of its 16x9 video, pick 3-5
+  segments (15-28 s total): Tuck eye close-up, the letter text, the big/scary moment, the emotional beat.
+  Do NOT show the final reveal (reply letter). Then tools/promo.py (EP, HOOK, SEGS) -> tuck_promo_epNN.mp4.
+- Check 3 frames of the result, push to ranta-videos/tremenvr/tuck/, post to TikTok, YouTube (short),
+  Instagram (REEL). Text: hook + "Full story on the TremenVR YouTube channel." Record promo_segs,
+  promo_video, promo_posted in episodes.json.
