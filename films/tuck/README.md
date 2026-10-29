@@ -43,3 +43,31 @@ Read BIBLE.md first. Character and world must stay consistent.
 - Check 3 frames of the result, push to ranta-videos/tremenvr/tuck/, post to TikTok, YouTube (short),
   Instagram (REEL). Text: hook + "Full story on the TremenVR YouTube channel." Record promo_segs,
   promo_video, promo_posted in episodes.json.
+
+## YouTube thumbnail (every episode, in the 19:13 posting run) — since 2026-10-30
+- Contact sheet -> pick T (big clear Tuck eye/face or the scary moment, not the final reveal).
+  EP, HOOK, T (, SHIFT) python3 tools/thumb.py <16x9 mp4> -> tuck_thumb_epNN.jpg. Look at it: text must not
+  cover Tuck's eye. Push to ranta-videos/tremenvr/tuck/ and pass its raw URL as "videoThumbnailUrl" ONLY on
+  the YouTube 16:9 post (own createScheduledPost call). If Metricool rejects it (VIDEO_THUMBNAIL_NOT_APPLICABLE),
+  post again without the thumbnail. Never skip the post because of the thumbnail.
+
+## Manga page (daily, cloud 17:37) — since 2026-10-30
+- Target = latest "posted" episode without "manga_posted". Contact sheet -> write spec.json (8 panels, see
+  tools/manga.py header) that tells the episode in order, ending on a quiet question (not the final reveal).
+  Text in simple English, short. python3 tools/manga.py spec.json <16x9 mp4> -> tuck_manga_epNN.png (2:3)
+  and tuck_manga_epNN_ig.jpg (4:5). Look at the page. Save spec to films/tuck/epNN/manga_spec.json.
+- Post: instagram (POST, image _ig.jpg, isAiGenerated true), threads, bluesky (<=300 chars), facebook (POST),
+  pinterest (2:3 png, board "TremenVR Games", pinLink YouTube channel). Text: "TUCK - Letter N in one page."
+  + hook + "Watch the film on the TremenVR YouTube channel."
+
+## Weekly review (Sunday 20:47, cloud) — since 2026-11-01
+- Metricool analytics for the last 7 days per network and per post type (film / ad short / manga).
+  Write films/tuck/insights.md (newest first): what worked, what did not, and 1-3 concrete changes.
+- Allowed automatic changes: promo segment rules and hooks in this README, and the times of the cloud
+  posting tasks (ad short, film, manga) by up to +-3 h toward better hours. Never change the PC task,
+  never stop a task, never skip a day. Report the changes to the owner in Japanese.
+
+## Video storage safety
+- ranta-videos is deleted and re-created by the owner on the 1st of each month. Before that reminder,
+  the reminder run copies every "stock" episode's mp4s into TremenVR films/tuck/stock_backup/.
+  The posting run: if a stock video URL is not 200, restore it from stock_backup/ to ranta-videos first.
