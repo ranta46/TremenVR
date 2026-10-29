@@ -11,5 +11,15 @@
   "status": "posted",
   "video_16x9": "tremenvr/tuck/tuck_ep01_16x9.mp4",
   "video_9x16": "tremenvr/tuck/tuck_ep01_9x16.mp4"
+ },
+ {
+  "ep": 2,
+  "title": "The Last Lamp",
+  "date": "2026-10-29",
+  "frames": 1680,
+  "hook": "Who sleeps under the bridge?",
+  "next_address": "The reply says: \"To the one who sleeps under the bridge.\" (the Tall One?)",
+  "clue": "The reply letter has a tiny drawing of a box with one eye: the writer knows Tuck.",
+  "status": "rendering"
  }
 ]
