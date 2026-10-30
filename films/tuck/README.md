@@ -71,3 +71,12 @@ Read BIBLE.md first. Character and world must stay consistent.
 - ranta-videos is deleted and re-created by the owner on the 1st of each month. Before that reminder,
   the reminder run copies every "stock" episode's mp4s into TremenVR films/tuck/stock_backup/.
   The posting run: if a stock video URL is not 200, restore it from stock_backup/ to ranta-videos first.
+
+## Game link in EVERY post (since 2026-10-30)
+Every TUCK post (film, ad short, manga, teaser, re-posts) must include the free game link in its text /
+description, with the network code so plays can be counted per network:
+  "Play TUCK free (phone, PC or VR): https://ranta46.github.io/TremenVR/tuck/?s=<code>"
+  codes: youtube=yt, tiktok=tt, instagram=ig, facebook=fb, threads=th, bluesky=bs, pinterest=pin, x=x, linkedin=li
+Networks get separate createScheduledPost calls when their link code differs (one call per network is fine).
+Pinterest pinLink = https://ranta46.github.io/TremenVR/tuck/?s=pin . Bluesky: keep the whole text <= 300 chars.
+Play data of the game: TremenVR play_data/ (w06), collected daily on the PC.
