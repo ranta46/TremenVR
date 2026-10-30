@@ -1,6 +1,6 @@
 {
  "collected": "2026-10-30 20:05 JST",
- "note": "per-post metrics (Metricool, data lags ~1 day; today's posts not counted yet)",
+ "note": "times are UTC (add 9 h for JST). per-post metrics (Metricool, data lags ~1 day; today's posts not counted yet)",
  "tiktok": [
   {"time":"2026-10-28 11:42","post":"Letter 1 film","views":142,"likes":4},
   {"time":"2026-10-29 10:04","post":"Letter 2 teaser","views":78,"likes":0}
