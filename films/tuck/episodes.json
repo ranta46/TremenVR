@@ -24,7 +24,7 @@
   "next_address": "The reply says: \"To the one who sleeps under the bridge.\" (the Tall One?)",
   "clue": "The reply letter has a tiny drawing of a box with one eye: the writer knows Tuck.",
   "status": "rendering",
-  "note": "2026-10-30 10:47 run: all 1680 frames done, raw.mp4 encoded on the PC. Finish (stage, sound, post.py, push) waits for TremenFilm folder access approval on the PC."
+  "note": "2026-10-30 15:47 run: raw.mp4 ready on the PC (1680 f). Finish still waits for TremenFilm folder access approval on the PC (prompt shown again)."
  },
  {
   "ep": 3,
@@ -35,6 +35,18 @@
   "next_address": "The reply says: \"To the window that never sleeps.\"",
   "clue": "The reply has a tiny drawing of a mail slot [ = ]: the writer may be at the post office.",
   "status": "rendering",
-  "render_started": "2026-10-30 11:00 JST (about 6.7 s/frame, done around 14:30 JST)"
+  "render_started": "2026-10-30 11:00 JST (about 6.7 s/frame, done around 14:30 JST)",
+  "note": "2026-10-30 15:47 run: all 1680 frames done, raw.mp4 encoded on the PC. Finish waits for TremenFilm folder access approval on the PC."
+ },
+ {
+  "ep": 4,
+  "title": "The Window That Never Sleeps",
+  "date": "2026-10-31",
+  "frames": 1680,
+  "hook": "Why did the clock stop?",
+  "next_address": "The reply says: \"To the clock that stopped.\"",
+  "clue": "A cup on the desk was still steaming: someone was in the room just before Tuck came.",
+  "status": "rendering",
+  "render_started": "2026-10-30 16:09 JST (about 7.5 s/frame, done around 19:45 JST)"
  }
 ]

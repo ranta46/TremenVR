@@ -1,0 +1,23 @@
+{
+ "ep": 4,
+ "title": "The Window That Never Sleeps",
+ "hook": "Why did the clock stop?",
+ "next": "Letter 5 tomorrow.",
+ "frames": 1680,
+ "cuts": [
+  [1, "Cam_01", "low wide: tiny Tuck under a tall dark building, one window glowing high up"],
+  [97, "Cam_02", "letter close-up: To: the window that never sleeps"],
+  [193, "Cam_03", "Tuck looks up, afraid of the height (eye wide, bulb dim); street lamp flickers on 245-252; brave"],
+  [289, "Cam_04", "wide: Tuck walks to the iron stairs and climbs"],
+  [529, "Cam_05", "Tuck on the landing looks down; deep footsteps; he freezes, bulb dim"],
+  [601, "Cam_06", "the Tall One's head and pale eyes pass above the rooftops"],
+  [673, "Cam_07", "Tuck climbs the second flight toward the lit window"],
+  [841, "Cam_08", "behind Tuck: the warm room, a desk, paper, a cup with steam (someone was just here)"],
+  [961, "Cam_09", "side: Tuck slides the letter onto the sill and bows"],
+  [1105, "Cam_10", "from inside the room: Tuck's face; the light goes out (1140); afraid, then brave"],
+  [1225, "Cam_11", "wide from the street: the whole building dark, only Tuck's bulb"],
+  [1345, "Cam_12", "sill close-up: a reply slides out of the dark room: To: the clock that stopped"],
+  [1465, "Cam_13", "Tuck holds the reply, happy bulb, turns to the city"],
+  [1561, "Cam_14", "behind Tuck: far away a pale clock face in the fog; one slow bell; Tuck tilts his head"]
+ ]
+}
