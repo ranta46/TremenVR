@@ -45,3 +45,27 @@ Write the answers into works.json as "vr_hook". If any answer is weak, change th
 ## Good examples
 - w01 The Signal Tower: high tower in the night, look at lamps to light them, a giant
   light-eater rises behind the town, it stares at you and you must not move. (gaze + stillness + scale)
+
+## How to make every new work (owner's rule since 2026-10-31; model = w06 "TUCK: Night Delivery")
+1. Start from games or films that are already loved worldwide. Pick 2-3 and name them in works.json
+   "references" (w06: Moss = guide a tiny hero; Five Nights at Freddy's / Alan Wake = light vs things in the dark;
+   Squid Game "red light, green light" = don't move while watched). Take their core fun, not their look or names.
+2. ONE verb the body does, explained in one line on the start card ("He only walks where you look").
+   The player must understand what to do within 5 seconds of starting.
+3. A real game loop: goal (deliver 3 / reach X), pressure (things coming at you), a twist stage (new rule
+   at the climax), and a result screen (time, score, rank S-C, saved best) so people want to play again.
+4. 360 degrees: the route or the threats go all the way around the player; the "whoa" (something huge,
+   something close) is staged so the game makes the player look at it (freeze + "LOOK UP").
+5. Characters show who they are through what they do in the game (Tuck: afraid of the dark -> only walks
+   in your light; hides in his box when hit; bows after a delivery). Keep the series bible rules.
+6. Before publishing: auto-play to the end (#auto), take stills of start / whoa / climax / ending and look
+   at them, 2-3 minutes for a human. Every step of the loop sends a trk() event (abacus, version tag).
+
+## Must be fun for people who do NOT know the IP (owner's rule since 2026-10-31)
+- Never require knowing the character, the films or the lore. The first 10 seconds work with zero context:
+  a clear goal, a clear threat, a clear action. Story lines are short and optional flavour.
+- Introduce the character by action, not by name or backstory ("A tiny robot needs your light" works for
+  everyone; "Letter 3 from the series" works for nobody new).
+- Never reference earlier episodes/works as something the player should know. Callbacks are bonus only.
+- Test question before publishing: "Would a stranger from a TikTok ad enjoy this with no explanation?"
+  If not, change it.
