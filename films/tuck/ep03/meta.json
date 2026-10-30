@@ -1,0 +1,74 @@
+{
+ "ep": 3,
+ "title": "Under the Bridge",
+ "hook": "Which window never sleeps?",
+ "next": "Letter 4 tomorrow.",
+ "frames": 1680,
+ "cuts": [
+  [
+   1,
+   "Cam_01",
+   "sleeping giant face, eye slits, breathing"
+  ],
+  [
+   97,
+   "Cam_02",
+   "letter close-up: To the one who sleeps under the bridge"
+  ],
+  [
+   193,
+   "Cam_03",
+   "Tuck looks down, eye wide, bulb dims, then brave"
+  ],
+  [
+   289,
+   "Cam_04",
+   "walks down the long stairs"
+  ],
+  [
+   481,
+   "Cam_05",
+   "bottom of stairs; big exhale, Tuck freezes"
+  ],
+  [
+   625,
+   "Cam_06",
+   "wide: Tuck walks to the huge sleeping face"
+  ],
+  [
+   769,
+   "Cam_07",
+   "Tuck sets the letter on the stone and bows"
+  ],
+  [
+   913,
+   "Cam_08",
+   "one giant eye opens"
+  ],
+  [
+   1057,
+   "Cam_09",
+   "Tuck afraid, then brave; bows again"
+  ],
+  [
+   1201,
+   "Cam_10",
+   "eyes close; Tuck walks away"
+  ],
+  [
+   1345,
+   "Cam_11",
+   "paper rustle; Tuck turns: the giant is gone, a reply lies there"
+  ],
+  [
+   1465,
+   "Cam_12",
+   "reply close-up: To the window that never sleeps [ = ]"
+  ],
+  [
+   1581,
+   "Cam_13",
+   "wide: Tuck alone with the reply, happy bulb"
+  ]
+ ]
+}

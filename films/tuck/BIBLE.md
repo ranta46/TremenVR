@@ -38,3 +38,4 @@ Every episode must keep Tuck's look, behaviour, beliefs and personality exactly 
 1. Whoever Is Still Here — the first letter falls from the slot; Tuck walks the street, sees the Tall One,
    slides the letter under a lit door. The window goes dark and a reply letter slides back out.
 2. The Last Lamp — on a foggy bridge of dead lamps Tuck meets the Tall One's eyes rising from below, posts the letter into the last lamp's slot and every lamp lights again. The reply shows a tiny drawing of Tuck.
+3. Under the Bridge — Tuck walks down long stairs under the bridge and finds the Tall One asleep. He sets the letter by its face and bows; one huge eye opens, looks, and closes. When Tuck looks back, the Tall One is gone and a reply lies there with a tiny mail-slot drawing.

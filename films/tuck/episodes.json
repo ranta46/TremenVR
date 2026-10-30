@@ -23,6 +23,18 @@
   "hook": "Who sleeps under the bridge?",
   "next_address": "The reply says: \"To the one who sleeps under the bridge.\" (the Tall One?)",
   "clue": "The reply letter has a tiny drawing of a box with one eye: the writer knows Tuck.",
-  "status": "rendering"
+  "status": "rendering",
+  "note": "2026-10-30 10:47 run: all 1680 frames done, raw.mp4 encoded on the PC. Finish (stage, sound, post.py, push) waits for TremenFilm folder access approval on the PC."
+ },
+ {
+  "ep": 3,
+  "title": "Under the Bridge",
+  "date": "2026-10-30",
+  "frames": 1680,
+  "hook": "Which window never sleeps?",
+  "next_address": "The reply says: \"To the window that never sleeps.\"",
+  "clue": "The reply has a tiny drawing of a mail slot [ = ]: the writer may be at the post office.",
+  "status": "rendering",
+  "render_started": "2026-10-30 11:00 JST (about 6.7 s/frame, done around 14:30 JST)"
  }
 ]
