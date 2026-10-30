@@ -150,19 +150,20 @@
  },
  {
   "id": "w06",
-  "date": "2026-10-30",
-  "title": "TUCK: A Letter for You",
+  "date": "2026-10-31",
+  "title": "TUCK: Night Delivery",
   "world": "The fog city",
   "characters": [
    "Tuck",
    "the Tall One"
   ],
-  "blurb": "A tiny box robot walks through the fog with a letter. It is for you. Find him by his beeps, light the lamps so he can walk, and stay very still while the Tall One walks by.",
+  "blurb": "You are Tuck's light: he only walks where you look. Burn the shadows that crawl out of the dark, deliver three letters, and when the giant opens its eyes, don't move.",
   "path": "w06/",
   "minutes": 2,
   "slug": "tuck",
   "url": "https://ranta46.github.io/TremenVR/tuck/",
-  "vr_hook": "1) Not flat: Tuck walks a full circle around you lamp by lamp, and the Tall One rises over the rooftops behind you. 2) Body action: turn to his beeps, look to light lamps, then hold your head completely still. 3) Whoa: a 50 m dark shape with two pale eyes appears behind you. 4) Reaction: Tuck's eye follows you, he freezes and shakes if you move, and he walks right up to you to hand you the letter. 5) Tomorrow: a letter addressed to you, from a robot who never stops a delivery.",
-  "tracking": "abacus tremenvr-play w06.v1.*"
+  "vr_hook": "1) Not flat: you stand in the middle of a toy-size fog city and guide tiny Tuck all the way around you; a 12 m giant rises over the roofs. 2) Body action: your gaze is the light (Tuck walks only where you look), look at shadows to burn them, and hold your head perfectly still while the giant's eyes are open. 3) Whoa: the giant rising behind the city, then its hand lifting Tuck up to your face. 4) Reaction: Tuck freezes, hides in his box when hit, beeps when left in the dark, bows to you at the end. 5) Tomorrow: rank S chase and the giant's reply.",
+  "tracking": "abacus tremenvr-play w06.v2.*",
+  "references": "Moss (guide a tiny hero), Five Nights at Freddy's / Alan Wake (light vs things in the dark), Squid Game red light green light (don't move while watched)"
  }
 ]

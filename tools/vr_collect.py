@@ -19,13 +19,15 @@ W={
         +["quit-at-"+p for p in ("menu","","dark","eye","lights","rise","sink","surface")]+["quit-at-find-"+i for i in R(0,12)],
  "w04": ["game","gran","half","held","quake","whoa"]+["tag-"+i for i in R(0,5)]
         +["quit-at-"+p for p in ("menu","","dawn","gran","quake","wake")]+["quit-at-game-"+i for i in R(0,20)],
- "w06": ["found","whoa","lamps","tall-start","tall","still-held","letter","read","yt-click","again"]+["lamp-"+i for i in R(1,4)]
-        +["quit-at-"+p for p in ("find","come","tall","passing","letter","bow")]+["quit-at-lamps-"+i for i in R(0,4)],
+ "w06": ["moved","d1","d2","d3","tall","look-up","eyes-open","reach","yt-click","again","zap-1","zap-10"]+["rank-"+r for r in "SABC"]
+        +["hit-"+i for i in R(1,5)]+["spotted-"+i for i in R(1,3)]+["quit-at-"+p+"-"+i for p in ("go","tall","hand") for i in R(0,2)],
  "w05": ["echo","face","follow","look-down","rise","storm","touch","whoa"]+["bell-"+i for i in R(0,12)]
         +["quit-at-"+p for p in ("menu","","edge","face","glow","rise","spiral","storm")]+["quit-at-echo-"+i for i in R(0,12)],
 }
-def key(w,ev,ver="v1"):
+VER={"w06":"v2"}
+def key(w,ev,ver=None):
     import re
+    ver=ver or VER.get(w,"v1")
     return re.sub(r"[^A-Za-z0-9_.-]",".",f"{w}.{ver}.{ev}")[:64]
 def get(k):
     # abacus rate limit is 30 requests / 10 s; 429 must be retried, not counted as 0
