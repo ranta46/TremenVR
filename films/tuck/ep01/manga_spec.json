@@ -1,0 +1,10 @@
+{"ep":1,"title":"Whoever Is Still Here","panels":[
+ {"t":16.0,"gamma":1.0,"crop":[0,200,1280,620],"sfx":"SHFF","caption":"A letter falls from the slot."},
+ {"t":12.5,"gamma":0.85,"bubble":"beep?"},
+ {"t":21.5,"gamma":0.8,"caption":"Who is it for?"},
+ {"t":27.5,"gamma":0.9,"caption":"Tuck never stops\na delivery."},
+ {"t":39.5,"gamma":0.9},
+ {"t":48.5,"gamma":1.3,"crop":[0,60,1280,480],"sfx":"THOOM...","caption":"Something walks in the fog."},
+ {"t":57.5,"gamma":0.9,"caption":"A lit door."},
+ {"t":69.0,"gamma":0.9,"bubble":"beep...","caption":"Is anyone still here?"}
+]}
