@@ -217,7 +217,7 @@ function thump(){tone(70,40,0.7,0.6);}
 let capT=0;function say(text,ms,who){who=who===undefined?"Rook · conductor":who;const c=$("cap");c.innerHTML=(who?"<b>"+who+"</b>":"")+text;c.style.opacity=1;clearTimeout(capT);capT=setTimeout(()=>{c.style.opacity=0;},ms||2600);}
 /* ---------- anonymous counts (GoatCounter, no cookies) ---------- */
 const TRK={off:false,sent:{},ver:"v1",src:(()=>{try{return(new URLSearchParams(location.search).get("s")||"direct").replace(/[^a-z0-9]/gi,"").slice(0,12)||"direct";}catch(e){return"direct";}})()};
-function trk(p){if(TRK.off)return;p="tremen/w01/"+TRK.ver+"/"+p;const go=n=>{try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:p,event:true});else if(n<6)setTimeout(()=>go(n+1),1000);}catch(e){}};go(0);}
+function trk(p){if(TRK.off)return;p="tremen/w01/"+TRK.ver+"/"+p;try{fetch("https://abacus.jasoncameron.dev/hit/tremenvr-play/"+p.replace(/^tremen\//,"").replace(/[^A-Za-z0-9_.-]/g,".").slice(0,64),{mode:"no-cors",keepalive:true});}catch(e){}const go=n=>{try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:p,event:true});else if(n<6)setTimeout(()=>go(n+1),1000);}catch(e){}};go(0);}
 function trkOnce(p){if(TRK.sent[p])return;TRK.sent[p]=1;trk(p);}
 /* ---------- look controls ---------- */
 const look={yaw:0,pitch:0.05,drag:false,lx:0,ly:0,moved:0};

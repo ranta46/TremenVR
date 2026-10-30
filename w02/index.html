@@ -46,7 +46,7 @@ const $=id=>document.getElementById(id);const V=THREE.Vector3;
 const HASH=(()=>{try{return location.hash.slice(1);}catch(e){return"";}})();
 /* ---------- anonymous counts (GoatCounter, no cookies) ---------- */
 const TRK={off:HASH==="auto"||HASH==="play",sent:{},ver:"v1",src:(()=>{try{return(new URLSearchParams(location.search).get("s")||"direct").replace(/[^a-z0-9]/gi,"").slice(0,12)||"direct";}catch(e){return"direct";}})()};
-function trk(p){if(TRK.off)return;p="tremen/w02/"+TRK.ver+"/"+p;const go=n=>{try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:p,event:true});else if(n<6)setTimeout(()=>go(n+1),1000);}catch(e){}};go(0);}
+function trk(p){if(TRK.off)return;p="tremen/w02/"+TRK.ver+"/"+p;try{fetch("https://abacus.jasoncameron.dev/hit/tremenvr-play/"+p.replace(/^tremen\//,"").replace(/[^A-Za-z0-9_.-]/g,".").slice(0,64),{mode:"no-cors",keepalive:true});}catch(e){}const go=n=>{try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:p,event:true});else if(n<6)setTimeout(()=>go(n+1),1000);}catch(e){}};go(0);}
 function trkOnce(p){if(TRK.sent[p])return;TRK.sent[p]=1;trk(p);}
 /* ---------- renderer ---------- */
 const canvas=$("stage");const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
