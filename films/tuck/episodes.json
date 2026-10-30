@@ -23,8 +23,10 @@
   "hook": "Who sleeps under the bridge?",
   "next_address": "The reply says: \"To the one who sleeps under the bridge.\" (the Tall One?)",
   "clue": "The reply letter has a tiny drawing of a box with one eye: the writer knows Tuck.",
-  "status": "rendering",
-  "note": "2026-10-30 15:47 run: raw.mp4 ready on the PC (1680 f). Finish still waits for TremenFilm folder access approval on the PC (prompt shown again)."
+  "status": "stock",
+  "note": "2026-10-30 16:50 finished into stock from the main session (raw staged manually).",
+  "video_16x9": "tremenvr/tuck/tuck_ep02_16x9.mp4",
+  "video_9x16": "tremenvr/tuck/tuck_ep02_9x16.mp4"
  },
  {
   "ep": 3,
@@ -34,9 +36,11 @@
   "hook": "Which window never sleeps?",
   "next_address": "The reply says: \"To the window that never sleeps.\"",
   "clue": "The reply has a tiny drawing of a mail slot [ = ]: the writer may be at the post office.",
-  "status": "rendering",
+  "status": "stock",
   "render_started": "2026-10-30 11:00 JST (about 6.7 s/frame, done around 14:30 JST)",
-  "note": "2026-10-30 15:47 run: all 1680 frames done, raw.mp4 encoded on the PC. Finish waits for TremenFilm folder access approval on the PC."
+  "note": "2026-10-30 16:50 finished into stock from the main session (raw staged manually).",
+  "video_16x9": "tremenvr/tuck/tuck_ep03_16x9.mp4",
+  "video_9x16": "tremenvr/tuck/tuck_ep03_9x16.mp4"
  },
  {
   "ep": 4,
