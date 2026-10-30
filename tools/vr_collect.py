@@ -6,7 +6,7 @@
 # Counts are cumulative totals since 2026-10-30 (diff two days for daily numbers).
 import urllib.request, json, os, time, datetime
 NS="tremenvr-play"; OUT=r"C:\Users\81803\TremenFilm\vr_play"
-SRC=["direct","profile","yt","youtube","tt","tiktok","ig","instagram","fb","facebook","th","threads",
+SRC=["direct","link","profile","yt","youtube","tt","tiktok","ig","instagram","fb","facebook","th","threads",
      "bs","bluesky","pin","pinterest","all","hub","x","twitter","li","link","bio","ad","ads"]
 R=lambda a,b: [str(i) for i in range(a,b+1)]
 COMMON=["finish"]+["start-"+d for d in ("pc","phone","vr")]+["open-"+s for s in SRC]+["from-"+s for s in SRC]
@@ -19,6 +19,8 @@ W={
         +["quit-at-"+p for p in ("menu","","dark","eye","lights","rise","sink","surface")]+["quit-at-find-"+i for i in R(0,12)],
  "w04": ["game","gran","half","held","quake","whoa"]+["tag-"+i for i in R(0,5)]
         +["quit-at-"+p for p in ("menu","","dawn","gran","quake","wake")]+["quit-at-game-"+i for i in R(0,20)],
+ "w06": ["found","whoa","lamps","tall-start","tall","still-held","letter","read","yt-click","again"]+["lamp-"+i for i in R(1,4)]
+        +["quit-at-"+p for p in ("find","come","tall","passing","letter","bow")]+["quit-at-lamps-"+i for i in R(0,4)],
  "w05": ["echo","face","follow","look-down","rise","storm","touch","whoa"]+["bell-"+i for i in R(0,12)]
         +["quit-at-"+p for p in ("menu","","edge","face","glow","rise","spiral","storm")]+["quit-at-echo-"+i for i in R(0,12)],
 }

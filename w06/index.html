@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TUCK: A Letter for You · TremenVR</title>
+<meta name="description" content="A tiny box robot walks through the fog with a letter. It is for you. Light the lamps, stay still when the Tall One walks by. Free. Phone, PC or VR headset. No app.">
+<meta property="og:title" content="TUCK: A Letter for You · Play free"><meta property="og:description" content="The letter is for you. Free. Phone, PC or VR headset. No app.">
+<style>
+:root{--ink:#0b0f1c;--lamp:#ffb45a;--paper:#f3ead8;--mute:#aab3c8;--eye:#9fe0ff}
+html,body{height:100%;margin:0;background:var(--ink);color:var(--paper);font-family:Georgia,"Times New Roman",serif;overflow:hidden}
+[hidden]{display:none!important}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.card{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(440px,calc(100% - 32px));box-sizing:border-box;background:rgba(11,15,28,.82);border:1px solid rgba(255,180,90,.45);border-radius:14px;padding:16px 18px;display:grid;gap:8px;backdrop-filter:blur(6px);max-height:calc(100% - 40px);overflow:auto}
+.card h1{margin:0;font-size:1.7rem}.card h1 em{color:var(--lamp);font-style:normal}
+.card p{margin:0;font-size:.95rem;line-height:1.45;color:var(--mute)}
+.eyebrow{font:600 .7rem/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--lamp);text-transform:uppercase}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,.btn{font:600 1rem Georgia,serif;border-radius:10px;padding:12px 18px;border:1px solid var(--lamp);background:transparent;color:var(--paper);cursor:pointer;text-decoration:none}
+button.primary,.btn.primary{background:var(--lamp);color:#241303}
+.tapnow{color:var(--lamp)!important;font-weight:700;font-size:1.15rem!important}
+#cap{position:fixed;left:16px;right:16px;top:calc(18px + env(safe-area-inset-top,0px));text-align:center;font-size:clamp(18px,4.6vw,28px);text-shadow:0 2px 10px #000,0 0 3px #000;opacity:0;transition:opacity .3s;pointer-events:none}
+#cap b{display:block;font:600 .55em ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--lamp)}
+#hud{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));font:600 13px ui-monospace,monospace;color:var(--lamp);text-shadow:0 1px 4px #000}
+#reticle{position:fixed;left:50%;top:50%;width:12px;height:12px;margin:-6px;border:2px solid rgba(243,234,216,.55);border-radius:50%;pointer-events:none}
+</style></head><body>
+<canvas id="stage"></canvas>
+<div id="cap" aria-live="polite"></div>
+<div id="reticle" hidden></div>
+<div id="hud" hidden></div>
+<section class="card" id="ending" hidden>
+  <div class="eyebrow">TremenVR · TUCK · Delivered</div>
+  <h1>The letter was <em>for you.</em></h1>
+  <p>Every letter deserves to arrive. Tuck has more letters to deliver. Who writes them?</p>
+  <div class="actions"><a class="btn primary" id="yt" href="https://www.youtube.com/channel/UC8rZQWqbrJgbcz8Dlnd902w" target="_blank" rel="noopener">Watch the TUCK films</a><button id="again" type="button">Play again</button><a href="../all.html" style="color:var(--lamp);padding:8px 4px">More free games →</a></div>
+</section>
+<section class="card" id="intro">
+  <div class="eyebrow">TremenVR · TUCK · Work 06</div>
+  <h1>TUCK: A Letter <em>for You</em></h1>
+  <p class="tapnow">Tap anywhere to start.</p>
+  <p>Turn your phone (or drag) to look around. Look at things to use them. Sound on.</p>
+  <div class="actions"><button class="primary" id="go" type="button">Tap to play</button><button id="vr" type="button" hidden>Play in VR</button></div>
+  <p style="font-size:.72rem">© 2026 Mori. TUCK and the Tall One are original works.</p>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){"use strict";
+const $=id=>document.getElementById(id);const V=THREE.Vector3;
+let AUTO=false;try{AUTO=location.hash==="#auto";}catch(e){}
+const canvas=$("stage");const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(AUTO?1:Math.min(window.devicePixelRatio||1,2));renderer.setSize(innerWidth,innerHeight,false);
+renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType("local");
+const FOGC=0x1b2338;const scene=new THREE.Scene();scene.fog=new THREE.Fog(FOGC,2,34);renderer.setClearColor(FOGC);
+const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,0.05,400);const rig=new THREE.Group();rig.add(camera);scene.add(rig);camera.position.y=1.6;
+const hemi=new THREE.HemisphereLight(0x8a9cc8,0x141822,0.55);scene.add(hemi);
+let seed=7;function rnd(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
+function canvasTex(w,h,draw){const c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);return new THREE.CanvasTexture(c);}
+function glowTex(r,g,b){return canvasTex(64,64,(c)=>{const q=c.createRadialGradient(32,32,1,32,32,31);q.addColorStop(0,"rgba(255,255,255,1)");q.addColorStop(0.3,`rgba(${r},${g},${b},0.7)`);q.addColorStop(1,`rgba(${r},${g},${b},0)`);c.fillStyle=q;c.fillRect(0,0,64,64);});}
+const warmGlow=glowTex(255,180,90),paleGlow=glowTex(200,225,255),blueGlow=glowTex(150,220,255);
+const tmpV=new V(),tmpV2=new V(),tmpV3=new V(),fwd=new V(),pfwd=new V(0,0,-1),UP=new V(0,1,0);
+const addGlow=(par,tex,s,pos,op)=>{const g=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:op===undefined?1:op}));g.scale.setScalar(s);if(pos)g.position.copy(pos);par.add(g);return g;};
+const P=(a,d,y)=>new V(-Math.sin(a)*d,y||0,-Math.cos(a)*d); /* a: yaw from start view, + = left, PI = behind */
+
+/* ---------- the fog city ---------- */
+const stoneTex=canvasTex(256,256,(c,w,h)=>{c.fillStyle="#2c3242";c.fillRect(0,0,w,h);seed=2;for(let y=0;y<8;y++)for(let x=0;x<8;x++){const v=40+rnd()*22|0;c.fillStyle=`rgb(${v},${v+4},${v+16})`;c.fillRect(x*32+(y%2)*16+2,y*32+2,28,28);}});
+stoneTex.wrapS=stoneTex.wrapT=THREE.RepeatWrapping;stoneTex.repeat.set(30,30);
+const ground=new THREE.Mesh(new THREE.CircleGeometry(120,48),new THREE.MeshLambertMaterial({map:stoneTex}));ground.rotation.x=-Math.PI/2;scene.add(ground);
+const winLit=new THREE.MeshBasicMaterial({color:0xffc477}),winDark=new THREE.MeshBasicMaterial({color:0x10141f});
+(function(){seed=11;const bm=new THREE.MeshLambertMaterial({color:0x2a3144,emissive:0x07090f});
+ for(let i=0;i<26;i++){const a=i/26*Math.PI*2+rnd()*0.08;if(Math.abs(Math.sin(a/2))<0.02)continue;const d=16+rnd()*10,w=4+rnd()*5,h=6+rnd()*11,dp=5+rnd()*4;
+  const g=new THREE.Group();g.position.copy(P(a,d+dp/2));g.rotation.y=a;scene.add(g);
+  const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,dp),bm);b.position.y=h/2;g.add(b);
+  for(let fy=2;fy<h-1;fy+=2.6)for(let fx=-w/2+1;fx<w/2-0.5;fx+=1.6){const lit=rnd()<0.07;const m=new THREE.Mesh(new THREE.PlaneGeometry(0.7,1.1),lit?winLit:winDark);m.position.set(fx+0.3,fy,dp/2+0.01);g.add(m);}}
+ /* the red post office (Tuck's home) */
+ const po=new THREE.Group();po.position.copy(P(0.55,11));po.rotation.y=0.55;scene.add(po);
+ const red=new THREE.MeshLambertMaterial({color:0x8e2a22,emissive:0x2a0806});const f=new THREE.Mesh(new THREE.BoxGeometry(5,5,1),red);f.position.y=2.5;po.add(f);
+ const sign=new THREE.Mesh(new THREE.PlaneGeometry(2.6,0.6),new THREE.MeshBasicMaterial({map:canvasTex(256,64,(c)=>{c.fillStyle="#2a120e";c.fillRect(0,0,256,64);c.fillStyle="#f0c890";c.font="bold 40px Georgia";c.textAlign="center";c.fillText("POST",128,46);})}));sign.position.set(0,4.2,0.51);po.add(sign);
+ const slot=new THREE.Mesh(new THREE.PlaneGeometry(0.9,0.12),new THREE.MeshBasicMaterial({color:0x080808}));slot.position.set(0,1.2,0.51);po.add(slot);
+ addGlow(po,warmGlow,2.2,new V(0,1.2,0.7),0.35);})();
+
+/* ---------- the four dark lamps (they ring around you) ---------- */
+const LDEF=[2.35,1.55,0.78,0.0];
+const LAMPS=LDEF.map((a,i)=>{const g=new THREE.Group();g.position.copy(P(a,4.6));scene.add(g);const im=new THREE.MeshLambertMaterial({color:0x1a1c22,emissive:0x050608});
+ const post=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.09,3.2,8),im);post.position.y=1.6;g.add(post);
+ const head=new THREE.Mesh(new THREE.CylinderGeometry(0.14,0.22,0.36,6),new THREE.MeshBasicMaterial({color:0x3a3c44}));head.position.y=3.3;g.add(head);
+ const cap=new THREE.Mesh(new THREE.ConeGeometry(0.3,0.2,6),im);cap.position.y=3.58;g.add(cap);
+ const gl=addGlow(g,warmGlow,2.6,new V(0,3.3,0),0);const pool=new THREE.PointLight(0xffaa55,0,9,2);pool.position.y=3.1;g.add(pool);
+ const base=P(a,3.5);return {i,a,g,head,gl,pool,base,st:"off",dwell:0,k:0,fl:0,hint:0,age:0,pos:new V().copy(g.position).setY(3.3)};});
+
+/* ---------- Tuck (original character; look fixed by the series bible) ---------- */
+const tuck=new THREE.Group();scene.add(tuck);const TU={lid:0.05,bulb:0.5,walk:0,bow:0,shake:0};
+(function(){const card=new THREE.MeshLambertMaterial({color:0xb98a5a,emissive:0x2a1a0c}),cardD=new THREE.MeshLambertMaterial({color:0x9a6e44,emissive:0x1e1208}),blk=new THREE.MeshLambertMaterial({color:0x14141a}),tape=new THREE.MeshLambertMaterial({color:0xd8c6a2,emissive:0x2a2418});
+ const body=new THREE.Mesh(new THREE.BoxGeometry(0.56,0.5,0.46),card);body.position.y=0.56;tuck.add(body);TU.body=body;
+ const tp=new THREE.Mesh(new THREE.BoxGeometry(0.1,0.006,0.47),tape);tp.position.y=0.25;body.add(tp);
+ for(const sd of[-1,1]){const fl=new THREE.Mesh(new THREE.BoxGeometry(0.27,0.012,0.44),cardD);fl.position.set(sd*0.2,0.27,0);fl.rotation.z=sd*0.45;body.add(fl);}
+ /* eye on the front (+Z) */
+ const eg=new THREE.Group();eg.position.set(0,0.02,0.231);body.add(eg);
+ eg.add(new THREE.Mesh(new THREE.CircleGeometry(0.17,32),new THREE.MeshBasicMaterial({color:0x08080c})));
+ const iris=new THREE.Mesh(new THREE.CircleGeometry(0.115,32),new THREE.MeshBasicMaterial({color:0x9fe0ff}));iris.position.z=0.002;eg.add(iris);TU.iris=iris;
+ const pu=new THREE.Mesh(new THREE.CircleGeometry(0.055,24),new THREE.MeshBasicMaterial({color:0x06060a}));pu.position.z=0.004;eg.add(pu);TU.pupil=pu;
+ const hl=new THREE.Mesh(new THREE.CircleGeometry(0.018,12),new THREE.MeshBasicMaterial({color:0xffffff}));hl.position.set(0.035,0.035,0.006);eg.add(hl);
+ TU.eyeGlow=addGlow(eg,blueGlow,0.45,new V(0,0,0.02),0.35);
+ const lg=new THREE.PlaneGeometry(0.38,1);lg.translate(0,-0.5,0);const lid=new THREE.Mesh(lg,card);lid.position.set(0,0.175,0.008);eg.add(lid);TU.lidM=lid;
+ /* antenna on his right side (-X) */
+ const an=new THREE.Mesh(new THREE.CylinderGeometry(0.008,0.008,0.34,5),blk);an.position.set(-0.18,0.42,-0.05);body.add(an);
+ const bulb=new THREE.Mesh(new THREE.SphereGeometry(0.035,12,10),new THREE.MeshBasicMaterial({color:0xffa040}));bulb.position.set(-0.18,0.6,-0.05);body.add(bulb);TU.bulbM=bulb;
+ TU.bulbGlow=addGlow(body,warmGlow,0.5,bulb.position,0.8);TU.light=new THREE.PointLight(0xffa050,0.6,4,2);TU.light.position.copy(bulb.position);body.add(TU.light);
+ /* legs + arms */
+ TU.legs=[];for(const sd of[-1,1]){const lg2=new THREE.Group();lg2.position.set(sd*0.13,0.31,0);tuck.add(lg2);const l=new THREE.Mesh(new THREE.CylinderGeometry(0.025,0.025,0.26,6),blk);l.position.y=-0.13;lg2.add(l);const ft=new THREE.Mesh(new THREE.SphereGeometry(0.05,10,8),blk);ft.scale.set(1,0.6,1.3);ft.position.set(0,-0.28,0.02);lg2.add(ft);TU.legs.push(lg2);}
+ TU.arms=[];for(const sd of[-1,1]){const ag=new THREE.Group();ag.position.set(sd*0.29,0.6,0);tuck.add(ag);const a=new THREE.Mesh(new THREE.CylinderGeometry(0.012,0.012,0.26,5),blk);a.position.y=-0.13;ag.add(a);TU.arms.push(ag);}})();
+/* the letter Tuck carries */
+const letterFront=canvasTex(512,340,(c,w,h)=>{c.fillStyle="#efe6d2";c.fillRect(0,0,w,h);c.strokeStyle="#c8b896";c.lineWidth=6;c.strokeRect(8,8,w-16,h-16);c.fillStyle="#2a2620";c.font="44px Georgia";c.textAlign="center";c.fillText("To: whoever is",w/2,130);c.fillText("still here",w/2,190);c.fillStyle="#9a1f1a";c.beginPath();c.arc(w/2,260,26,0,7);c.fill();});
+const letterIn=canvasTex(512,340,(c,w,h)=>{c.fillStyle="#f4ecda";c.fillRect(0,0,w,h);c.fillStyle="#2a2620";c.font="38px Georgia";c.textAlign="center";c.fillText("You stayed.",w/2,95);c.fillText("Thank you.",w/2,150);c.fillText("Keep a light on for us.",w/2,215);c.font="34px Georgia";c.fillText("[ o ]",w/2,290);});
+const letter=new THREE.Mesh(new THREE.PlaneGeometry(0.3,0.2),new THREE.MeshBasicMaterial({map:letterFront,side:THREE.DoubleSide}));
+function letterToTuck(){tuck.add(letter);letter.position.set(0,0.3,0.32);letter.rotation.set(-0.3,0,0);letter.scale.setScalar(1);}
+letterToTuck();
+
+/* ---------- the Tall One (never attacks) ---------- */
+const tall=new THREE.Group();scene.add(tall);const TA={};
+(function(){const m=new THREE.MeshBasicMaterial({color:0x06070c,transparent:true,opacity:0.88,fog:false});
+ const b=new THREE.Mesh(new THREE.CylinderGeometry(1.7,2.8,26,14),m);b.position.y=13;tall.add(b);
+ const h=new THREE.Mesh(new THREE.SphereGeometry(2.6,18,14),m);h.scale.set(1,1.15,0.9);h.position.y=28;tall.add(h);
+ TA.eyes=[];for(const sd of[-1,1]){const e=new THREE.Mesh(new THREE.SphereGeometry(0.22,10,8),new THREE.MeshBasicMaterial({color:0xe8eeff,fog:false}));e.scale.set(1.4,0.55,1);e.position.set(sd*0.95,28.6,2.3);tall.add(e);TA.eyes.push(e);addGlow(tall,paleGlow,2.6,e.position,0.55).material.fog=false;}
+ tall.scale.setScalar(1.8);tall.visible=false;})();
+
+/* ---------- sound (made in the browser) ---------- */
+const A={ctx:null};
+function setP(p,v){if(p.positionX){p.positionX.value=v.x;p.positionY.value=v.y;p.positionZ.value=v.z;}else p.setPosition(v.x,v.y,v.z);}
+function pan(pos,ref){const c=A.ctx,p=c.createPanner();p.panningModel=AUTO?"equalpower":"HRTF";p.distanceModel="inverse";p.refDistance=ref||2;p.rolloffFactor=0.7;setP(p,pos);p.connect(A.master);return p;}
+function initAudio(){if(A.ctx){A.ctx.resume&&A.ctx.resume();return;}const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const c=new C();A.ctx=c;A.master=c.createGain();A.master.gain.value=0.9;A.master.connect(c.destination);
+ const n=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=n.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;A.noise=n;
+ const s=c.createBufferSource();s.buffer=n;s.loop=true;const lp=c.createBiquadFilter();lp.type="lowpass";lp.frequency.value=420;const g=c.createGain();g.gain.value=0.07;s.connect(lp);lp.connect(g);g.connect(A.master);s.start();}
+function updListener(){if(!A.ctx)return;const l=A.ctx.listener;camera.getWorldPosition(tmpV2);if(l.positionX){l.positionX.value=tmpV2.x;l.positionY.value=tmpV2.y;l.positionZ.value=tmpV2.z;l.forwardX.value=fwd.x;l.forwardY.value=fwd.y;l.forwardZ.value=fwd.z;l.upX.value=0;l.upY.value=1;l.upZ.value=0;}else{l.setPosition(tmpV2.x,tmpV2.y,tmpV2.z);l.setOrientation(fwd.x,fwd.y,fwd.z,0,1,0);}}
+function tone(f0,f1,len,vol,type,dest,delay){const c=A.ctx;if(!c)return;const t=c.currentTime+(delay||0),o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+len);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+0.015);g.gain.exponentialRampToValueAtTime(0.001,t+len);o.connect(g);g.connect(dest||A.master);o.start(t);o.stop(t+len+0.05);}
+function noiseHit(len,vol,freq,q,dest){const c=A.ctx;if(!c)return;const t=c.currentTime,s=c.createBufferSource();s.buffer=A.noise;s.loop=true;const f=c.createBiquadFilter();f.type="bandpass";f.frequency.value=freq;f.Q.value=q||1;const g=c.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+len*0.15);g.gain.linearRampToValueAtTime(0,t+len);s.connect(f);f.connect(g);g.connect(dest||A.master);s.start(t);s.stop(t+len+0.1);}
+function tuckPan(){tuck.getWorldPosition(tmpV);tmpV.y+=0.6;return pan(tmpV,1.5);}
+const beep={q:()=>{if(!A.ctx)return;const p=tuckPan();tone(900,1500,0.14,0.18,"square",p);tone(1000,1700,0.16,0.16,"square",p,0.22);},
+ happy:()=>{if(!A.ctx)return;const p=tuckPan();[0,0.11,0.22].forEach((d,i)=>tone(1300+i*200,1500+i*200,0.08,0.16,"square",p,d));},
+ sad:()=>{if(!A.ctx)return;const p=tuckPan();tone(1100,600,0.35,0.15,"square",p);},
+ small:()=>{if(!A.ctx)return;const p=tuckPan();tone(1400,1300,0.06,0.1,"square",p);}};
+function lampOn(L){if(!A.ctx)return;const p=pan(L.pos,3);noiseHit(0.12,0.4,2500,2,p);tone(220,220,1.6,0.12,"sawtooth",p,0.05);tone(440,440,1.2,0.06,"sine",p,0.05);}
+function lampHum(L){if(!A.ctx)return;const p=pan(L.pos,3);noiseHit(0.08,0.25,3000,3,p);tone(180,170,0.3,0.06,"sawtooth",p);}
+function thud(pos,v){if(!A.ctx)return;const p=pan(pos,12);tone(48,30,1.4,0.55*v,"sine",p);noiseHit(0.9,0.5*v,110,0.6,p);}
+function rumble(pos){if(!A.ctx)return;const p=pan(pos,14);noiseHit(3,0.6,70,0.5,p);tone(40,33,3,0.4,"sine",p);}
+function chord(){if(!A.ctx)return;[[262,1],[330,0.7],[392,0.6],[523,0.4]].forEach(([f,v],i)=>{const c=A.ctx,t=c.currentTime+i*0.28,o=c.createOscillator(),g=c.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.11*v,t+1);g.gain.linearRampToValueAtTime(0,t+6);o.connect(g);g.connect(A.master);o.start(t);o.stop(t+6.1);});}
+
+/* ---------- captions + anonymous counts ---------- */
+let capT=0;function say(text,ms){const c=$("cap");c.innerHTML=text;c.style.opacity=1;clearTimeout(capT);capT=setTimeout(()=>{c.style.opacity=0;},ms||2800);}
+const TRK={off:false,sent:{},ver:"v1",src:(()=>{try{return(new URLSearchParams(location.search).get("s")||"direct").replace(/[^a-z0-9]/gi,"").slice(0,12)||"direct";}catch(e){return"direct";}})()};
+function trk(p){if(TRK.off)return;p="w06."+TRK.ver+"."+p;try{fetch("https://abacus.jasoncameron.dev/hit/tremenvr-play/"+p.replace(/[^A-Za-z0-9_.-]/g,".").slice(0,64),{mode:"no-cors",keepalive:true});}catch(e){}}
+function trkOnce(p){if(TRK.sent[p])return;TRK.sent[p]=1;trk(p);}
+
+/* ---------- looking: VR head, phone gyro, drag, mouse ---------- */
+const look={yaw:0,pitch:-0.05,drag:false,lx:0,ly:0,moved:0,off:0};
+const gyro={ok:false,a:0,b:0,g:0,aligned:false};
+addEventListener("deviceorientation",e=>{if(e.alpha==null||e.beta==null)return;gyro.ok=true;gyro.a=e.alpha;gyro.b=e.beta;gyro.g=e.gamma||0;});
+const gq=new THREE.Quaternion(),gq1=new THREE.Quaternion(-Math.sqrt(0.5),0,0,Math.sqrt(0.5)),gq0=new THREE.Quaternion(),gE=new THREE.Euler(),ZEE=new V(0,0,1),yq=new THREE.Quaternion();
+function gyroQuat(){const d=Math.PI/180;const o=((screen.orientation&&screen.orientation.angle)||window.orientation||0)*d;gE.set(gyro.b*d,gyro.a*d,-gyro.g*d,"YXZ");gq.setFromEuler(gE);gq.multiply(gq1);gq.multiply(gq0.setFromAxisAngle(ZEE,-o));return gq;}
+function askGyro(){try{if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==="function")DeviceOrientationEvent.requestPermission().catch(()=>{});}catch(e){}}
+canvas.addEventListener("pointerdown",e=>{look.drag=true;look.lx=e.clientX;look.ly=e.clientY;look.moved=0;try{canvas.setPointerCapture(e.pointerId);}catch(_){}});
+canvas.addEventListener("pointermove",e=>{if(!look.drag)return;const s=Math.PI/Math.max(320,Math.min(innerWidth,innerHeight)*1.1);const dx=(e.clientX-look.lx)*s,dy=(e.clientY-look.ly)*s;if(gyro.ok)look.off+=dx;else{look.yaw+=dx;look.pitch=Math.max(-1.45,Math.min(1.45,look.pitch+dy));}look.moved+=Math.abs(e.clientX-look.lx)+Math.abs(e.clientY-look.ly);look.lx=e.clientX;look.ly=e.clientY;});
+canvas.addEventListener("pointerup",e=>{look.drag=false;if(look.moved<8&&st.mode==="play")tapAt(e.clientX,e.clientY);});
+addEventListener("keydown",e=>{if(e.key==="ArrowLeft")look.yaw+=0.2;if(e.key==="ArrowRight")look.yaw-=0.2;if(e.key==="ArrowUp")look.pitch=Math.min(1.45,look.pitch+0.1);if(e.key==="ArrowDown")look.pitch=Math.max(-1.45,look.pitch-0.1);if(e.key===" "&&st.mode==="play")tapAt(innerWidth/2,innerHeight/2);});
+const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+function angTo(p){camera.getWorldPosition(tmpV2);tmpV3.copy(p).sub(tmpV2).normalize();return fwd.angleTo(tmpV3);}
+function tuckHead(){return tuck.localToWorld(tmpV.set(0,0.58,0.2)).clone();}
+function tapAt(x,y){ndc.set(x/innerWidth*2-1,-(y/innerHeight)*2+1);ray.setFromCamera(ndc,camera);camera.getWorldPosition(tmpV2);
+ const hit=p=>{tmpV3.copy(p).sub(tmpV2).normalize();return ray.ray.direction.angleTo(tmpV3);};
+ if(st.phase==="letter"&&st.letterReady){letter.getWorldPosition(tmpV);if(hit(tmpV)<0.35){readLetter();return;}}
+ if(st.phase==="lamps"){const L=LAMPS[st.lit];if(L&&L.st==="wait"&&hit(L.pos)<0.3){lightLamp(L);return;}}
+ if(hit(tuckHead())<0.3){st.boop=1;beep.small();if(st.phase==="find")found();}}
+
+/* ---------- the story ---------- */
+const st={mode:"menu",phase:"",t:0,pt:0,auto:false,said:{},lit:0,target:null,speed:0.9,dwell:0,still:0,moving:0,ang:0,boop:0,letterReady:false,read:0,hintT:0,tallU:0,stepT:0,shake:0};
+function once(k,f){if(st.said[k])return;st.said[k]=1;f();}
+function setPhase(p){st.phase=p;st.pt=0;st.dwell=0;st.hintT=0;}
+function angDiff(a,b){let d=a-b;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;return d;}
+function dirWord(p){camera.getWorldPosition(tmpV2);tmpV.copy(p).sub(tmpV2);const d=angDiff(Math.atan2(-tmpV.x,-tmpV.z),Math.atan2(-fwd.x,-fwd.z));
+ if(Math.abs(d)>2.2)return"Behind you!";if(Math.abs(d)<0.45)return"Right in front of you!";return d>0?"To your left!":"To your right!";}
+function start(vr){initAudio();askGyro();
+ Object.assign(st,{mode:"play",t:0,said:{},lit:0,target:null,speed:0.9,still:0,moving:0,boop:0,letterReady:false,read:0,tallU:0,stepT:0,shake:0});setPhase("find");
+ tuck.position.copy(P(Math.PI,15));tuck.rotation.set(0,0,0);TU.lid=0.12;TU.bulb=0.25;TU.bow=0;letterToTuck();letter.material.map=letterFront;
+ LAMPS.forEach(L=>{L.st="off";L.k=0;L.dwell=0;L.hint=0;L.age=0;});tall.visible=false;
+ $("intro").hidden=true;$("ending").hidden=true;$("reticle").hidden=false;$("hud").hidden=true;
+ if(!vr&&!st.auto){look.yaw=0;look.pitch=-0.05;}gyro.aligned=false;
+ trkOnce("start-"+(vr?"vr":(matchMedia("(pointer:coarse)").matches?"phone":"pc")));trkOnce("from-"+TRK.src);
+ say("Shh. Listen...",2600);}
+function found(){if(st.phase!=="find")return;trkOnce("found");TU.lid=-0.05;TU.bulb=1;beep.happy();say("That's Tuck. He has a letter.",3000);setPhase("come");st.target=P(Math.PI,6.2);}
+function lightLamp(L){if(L.st!=="wait")return;L.st="on";st.lit++;lampOn(L);trkOnce("lamp-"+st.lit);beep.happy();TU.bulb=1;
+ st.target=L.base.clone();if(st.lit===1)say("Yes! He only walks when the lamp is on.",3000);if(st.lit===3)say("One more!",1800);}
+function readLetter(){if(!st.letterReady||st.read)return;st.read=0.001;trkOnce("read");scene.attach(letter);say("",10);}
+function lookToward(p,dt,k){camera.getWorldPosition(tmpV2);tmpV.copy(p).sub(tmpV2);const ty=Math.atan2(-tmpV.x,-tmpV.z),tp=Math.atan2(tmpV.y,Math.hypot(tmpV.x,tmpV.z));const s=Math.min(1,dt*(k||2));look.yaw+=angDiff(ty,look.yaw)*s;look.pitch+=(Math.max(-1.45,Math.min(1.45,tp))-look.pitch)*s;}
+function autoLook(dt){const p=st.pt;
+ if(st.phase==="find"){if(p>2.5)lookToward(tuckHead(),dt,1.8);return;}
+ if(st.phase==="come"){lookToward(tuckHead(),dt,2);return;}
+ if(st.phase==="lamps"){const L=LAMPS[st.lit];if(L&&L.st==="wait"&&L.age>0.8)lookToward(L.pos,dt,2.4);else lookToward(tuckHead(),dt,2);return;}
+ if(st.phase==="tall"){if(p<2.2)lookToward(tuckHead(),dt,2);else if(p<5.5)lookToward(tmpV3.copy(tall.position).setY(48),dt,1.6);return;}
+ if(st.phase==="letter"){letter.getWorldPosition(tmpV);lookToward(tmpV,dt,2);}}
+function update(dt){const T=st.t+=dt;st.pt+=dt;const play=st.mode==="play";
+ if(!renderer.xr.isPresenting){
+  if(st.auto&&play)autoLook(dt);
+  if(gyro.ok&&!st.auto){const q=gyroQuat();if(!gyro.aligned){tmpV.set(0,0,-1).applyQuaternion(q);look.off=look.yaw-Math.atan2(-tmpV.x,-tmpV.z);gyro.aligned=true;}yq.setFromAxisAngle(UP,look.off);camera.quaternion.copy(yq).multiply(q);}
+  else camera.rotation.set(look.pitch,look.yaw,0,"YXZ");
+  st.shake=Math.max(0,st.shake-dt*0.4);const sh=st.shake*0.04;camera.position.set((Math.random()-0.5)*sh,1.6+(Math.random()-0.5)*sh,(Math.random()-0.5)*sh);}
+ camera.updateMatrixWorld();camera.getWorldDirection(fwd);updListener();
+ st.ang=fwd.angleTo(pfwd)/Math.max(dt,1e-3);pfwd.copy(fwd);
+ if(st.mode==="menu"){look.yaw+=dt*0.04;tuck.position.copy(P(0.3,5));tuck.lookAt(0,0,0);TU.bulb=0.8;}
+ if(play)story(dt,T);
+ updateTuck(dt,T);updateLamps(dt,T);
+ if(play){let h="";if(st.phase==="lamps")h="Lamps "+"●".repeat(st.lit)+"○".repeat(4-st.lit);else if(st.phase==="tall"&&st.pt>4)h="Stay still "+"█".repeat(Math.round(st.tallU*8))+"░".repeat(8-Math.round(st.tallU*8));$("hud").textContent=h;$("hud").hidden=!h;}}
+function story(dt,T){const p=st.pt;
+ if(st.phase==="find"){
+  if(p>1.2&&(Math.floor(p/2.6)!==Math.floor((p-dt)/2.6)))beep.q();
+  if(p>3)once("f1",()=>say("Beep? Something is out there. Find it.",3200));
+  if(p>8)once("f2",()=>say(dirWord(tuckHead())+" A little light in the fog.",3200));
+  if(p>15)once("f3",()=>say(dirWord(tuckHead()),2600));
+  if(angTo(tuckHead())<0.32){st.dwell+=dt;if(st.dwell>0.7)found();}else st.dwell=Math.max(0,st.dwell-dt);
+  if(p>3.5)once("w",()=>{});return;}
+ if(st.phase==="come"){if(angTo(tuckHead())<0.4)trkOnce("whoa");
+  if(!st.target){setPhase("lamps");TU.bulb=0.25;TU.lid=0.12;beep.sad();say("He stops. It's too dark. Tuck is afraid of the dark.",3600);trkOnce("lamps");}
+  return;}
+ if(st.phase==="lamps"){
+  if(p>3.4)once("l1",()=>say("Look at the lamp to light it.",3200));
+  const L=LAMPS[st.lit];
+  if(L&&L.st==="off"&&!st.target&&p>3){L.st="wait";L.age=0;}
+  if(L&&L.st==="wait"){L.age+=dt;if(angTo(L.pos)<0.28){L.dwell+=dt;if(L.dwell>0.6)lightLamp(L);}else L.dwell=Math.max(0,L.dwell-dt*0.5);
+   if(L.age>5&&L.hint===0){L.hint=1;say("The next lamp... "+dirWord(L.pos),2600);}if(L.age>12&&L.hint===1){L.hint=2;say(dirWord(L.pos),2400);}}
+  if(st.lit>=4&&!st.target&&p>1){setPhase("tall");trkOnce("tall-start");tall.visible=true;st.tallU=0;tall.position.copy(P(Math.PI+0.75,44));tall.position.y=-60;}
+  return;}
+ if(st.phase==="tall"){const th=Math.PI+0.75-st.tallU*1.5;tmpV.copy(P(th,44));tall.position.x=tmpV.x;tall.position.z=tmpV.z;tall.position.y=Math.min(0,tall.position.y+dt*20);tall.lookAt(0,tall.position.y,0);
+  if(p>0.3)once("t0",()=>{rumble(tall.position);st.shake=0.8;LAMPS.forEach(L=>L.fl=1);TU.bulb=0.1;TU.lid=0.14;});
+  if(p>1.4)once("t1",()=>{beep.sad();say("Tuck froze. Something huge is behind you...",3400);});
+  if(p>1.4&&angTo(tmpV3.copy(tall.position).setY(48))<0.5)trkOnce("tall");
+  if(p>4.6)once("t2",()=>say("It never hurts anyone. Stay very still until it passes.",4000));
+  if(p>4.6){const still=st.ang<0.45;st.tallU=Math.min(1,st.tallU+dt*(still?1/9:0));if(!still){st.moving+=dt;if(st.moving>0.6){st.moving=0;TU.shake=1;beep.small();once("t3",()=>say("Shh... too much moving. Hold still like Tuck.",2800));}}else st.moving=0;
+   st.stepT+=dt*(still?1:0);if(st.stepT>2.2){st.stepT=0;thud(tall.position,0.8);st.shake=Math.max(st.shake,0.35);}}
+  if(p>45)st.tallU=1;
+  if(st.tallU>=1){trkOnce("still-held");setPhase("passing");}
+  return;}
+ if(st.phase==="passing"){tall.position.y-=dt*6;tmpV.copy(P(Math.PI-0.75-p*0.1,44+p*3));tall.position.x=tmpV.x;tall.position.z=tmpV.z;
+  if(p>0.4)once("p1",()=>{LAMPS.forEach(L=>L.fl=0);TU.bulb=1;TU.lid=0.05;beep.happy();say("It's gone. You did it.",2600);});
+  if(p>3){tall.visible=false;setPhase("letter");trkOnce("letter");st.target=P(0,0.95);}
+  return;}
+ if(st.phase==="letter"){
+  if(!st.target&&!st.letterReady){st.letterReady=true;TU.lid=-0.05;beep.q();say("Tuck holds up the letter. It's for you. Look at it.",3800);}
+  if(st.letterReady&&!st.read){letter.getWorldPosition(tmpV);if(angTo(tmpV)<0.3){st.dwell+=dt;if(st.dwell>1)readLetter();}else st.dwell=Math.max(0,st.dwell-dt);if(p>25)readLetter();}
+  if(st.read){st.read+=dt;camera.getWorldPosition(tmpV2);tmpV.copy(tmpV2).addScaledVector(fwd,0.5);letter.position.lerp(tmpV,Math.min(1,dt*3));letter.lookAt(tmpV2);
+   const s=1+Math.min(1,st.read)*0.25;letter.scale.setScalar(s);
+   if(st.read>2.6)once("flip",()=>{letter.material.map=letterIn;letter.material.needsUpdate=true;noiseHit(0.25,0.3,3000,1);});
+   if(st.read>7)once("bow",()=>{setPhase("bow");scene.remove(letter);TU.bulb=1.4;beep.happy();chord();LAMPS.forEach(L=>L.k=1.05);});}
+  return;}
+ if(st.phase==="bow"){TU.bow=Math.min(1,p<2.2?p/0.6:Math.max(0,1-(p-2.2)/0.6));
+  if(p>0.5)once("b1",()=>say("Delivered. Tuck bows. Every letter deserves to arrive.",4200));
+  if(p>3.4)once("b2",()=>{beep.happy();});
+  if(p>6&&st.mode==="play"){st.mode="end";trkOnce("finish");$("reticle").hidden=true;$("hud").hidden=true;$("ending").hidden=false;}}}
+function updateTuck(dt,T){
+ const moving=!!st.target&&st.mode==="play";
+ if(moving){tmpV.copy(st.target).sub(tuck.position);tmpV.y=0;const d=tmpV.length();
+  if(d<0.05){st.target=null;}else{const s=Math.min(d,st.speed*dt);tuck.position.addScaledVector(tmpV.normalize(),s);tmpV.copy(tuck.position).add(tmpV);tuck.lookAt(tmpV.x,0,tmpV.z);}
+  TU.walk+=dt*9;}
+ else{camera.getWorldPosition(tmpV2);tmpV.set(tmpV2.x,0,tmpV2.z);const cur=tuck.rotation.y;tuck.lookAt(tmpV);const want=tuck.rotation.y;tuck.rotation.y=cur;tuck.rotation.y+=angDiff(want,cur)*Math.min(1,dt*4);}
+ const w=moving?Math.sin(TU.walk):0;TU.legs[0].rotation.x=w*0.4;TU.legs[1].rotation.x=-w*0.4;TU.arms[0].rotation.x=-w*0.3-(st.letterReady&&!st.read?1.1:0.5);TU.arms[1].rotation.x=w*0.3-(st.letterReady&&!st.read?1.1:0.5);
+ TU.shake=Math.max(0,TU.shake-dt*1.5);st.boop=Math.max(0,st.boop-dt*2);
+ TU.body.position.y=0.56+(moving?Math.abs(w)*0.025:0)+st.boop*0.06;TU.body.rotation.z=(moving?w*0.05:0)+Math.sin(T*40)*0.03*TU.shake;TU.body.rotation.x=TU.bow*0.55;
+ if(st.letterReady&&!st.read&&letter.parent===tuck){letter.position.set(0,0.33,0.42);letter.rotation.set(-0.6,0,0);}
+ /* eyelid: 0 = wide, 0.05 normal, 0.14 afraid, 0.34 closed */
+ const lidT=Math.max(0,TU.lid)+(Math.sin(T*0.9)>0.993?0.3:0);TU.lidM.scale.y+= (Math.max(0.001,lidT)-TU.lidM.scale.y)*Math.min(1,dt*10);
+ camera.getWorldPosition(tmpV2);tuck.worldToLocal(tmpV3.copy(tmpV2));const px=Math.max(-1,Math.min(1,tmpV3.x/3)),py=Math.max(-1,Math.min(1,(tmpV3.y-0.6)/3));TU.pupil.position.x=px*0.035;TU.pupil.position.y=py*0.035;
+ const b=Math.max(0.05,TU.bulb)*(0.9+0.1*Math.sin(T*5));TU.bulbM.material.color.setRGB(Math.min(1,0.4+b*0.6),Math.min(1,0.2+b*0.45),0.1+b*0.15);TU.bulbGlow.material.opacity=Math.min(1,0.15+b*0.7);TU.bulbGlow.scale.setScalar(0.3+b*0.5);TU.light.intensity=Math.min(0.55,0.15+b*0.5);}
+function updateLamps(dt,T){LAMPS.forEach(L=>{let target=L.st==="on"?1:0;if(L.st==="wait")target=0.08+0.06*Math.sin(T*9)*(Math.random()<0.5?1:0);if(L.k>1.05)target=1.3;
+  if(L.fl&&L.st==="on")target*=Math.random()<0.25?0.15:0.8;
+  if(L.st==="wait"&&Math.random()<dt*0.5)lampHum(L);
+  L.k+=(target-L.k)*Math.min(1,dt*(target>L.k?6:3));L.gl.material.opacity=Math.min(1,L.k);L.gl.scale.setScalar(2+L.k*1.4);L.pool.intensity=L.k*2.2;L.head.material.color.setRGB(0.23+L.k*0.77,0.24+L.k*0.5,0.27+L.k*0.1);});}
+window.__setAuto=v=>{st.auto=v;TRK.off=true;};window.__st=st;window.__start=start;
+/* ---------- VR ---------- */
+for(const k of[0,1]){const c=renderer.xr.getController(k);c.addEventListener("select",()=>{if(st.mode==="play")tapAt(innerWidth/2,innerHeight/2);});rig.add(c);}
+/* ---------- loop ---------- */
+let last=performance.now();
+function frame(now){const dt=Math.min(0.05,Math.max(0,(now-last)/1000));last=now;update(dt);renderer.render(scene,camera);}
+renderer.setAnimationLoop(frame);
+function begin(e){if(!$("intro").hidden&&!st.auto&&!(e&&e.target&&e.target.closest&&(e.target.closest("#vr")||e.target.closest("a"))))start(false);}
+addEventListener("click",begin);
+$("again").addEventListener("click",e=>{e.stopPropagation();trk("again");start(false);});
+$("yt").addEventListener("click",e=>{e.stopPropagation();trkOnce("yt-click");});
+setTimeout(()=>{if(!$("intro").hidden&&!st.auto)trkOnce("open-"+TRK.src);},1500);
+if(navigator.xr&&navigator.xr.isSessionSupported){navigator.xr.isSessionSupported("immersive-vr").then(ok=>{if(ok)$("vr").hidden=false;}).catch(()=>{});}
+$("vr").addEventListener("click",async e=>{e.stopPropagation();try{const s=await navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor"]});await renderer.xr.setSession(s);rig.position.y=1.6;start(true);s.addEventListener("end",()=>{rig.position.y=0;});}catch(err){say("VR could not start on this device.",3000);}});
+addEventListener("pagehide",()=>{if(st.mode==="play")trk("quit-at-"+st.phase+(st.phase==="lamps"?"-"+st.lit:""));});
+addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false);});
+(function(){let h="";try{h=location.hash.slice(1);}catch(e){}if(h==="auto"){window.__setAuto(true);setTimeout(()=>start(false),600);}else if(h==="play"){TRK.off=true;}})();
+})();
+</script></body></html>

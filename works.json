@@ -147,5 +147,22 @@
    "Turn to the bell you hear."
   ],
   "probe_sec": 93.3
+ },
+ {
+  "id": "w06",
+  "date": "2026-10-30",
+  "title": "TUCK: A Letter for You",
+  "world": "The fog city",
+  "characters": [
+   "Tuck",
+   "the Tall One"
+  ],
+  "blurb": "A tiny box robot walks through the fog with a letter. It is for you. Find him by his beeps, light the lamps so he can walk, and stay very still while the Tall One walks by.",
+  "path": "w06/",
+  "minutes": 2,
+  "slug": "tuck",
+  "url": "https://ranta46.github.io/TremenVR/tuck/",
+  "vr_hook": "1) Not flat: Tuck walks a full circle around you lamp by lamp, and the Tall One rises over the rooftops behind you. 2) Body action: turn to his beeps, look to light lamps, then hold your head completely still. 3) Whoa: a 50 m dark shape with two pale eyes appears behind you. 4) Reaction: Tuck's eye follows you, he freezes and shakes if you move, and he walks right up to you to hand you the letter. 5) Tomorrow: a letter addressed to you, from a robot who never stops a delivery.",
+  "tracking": "abacus tremenvr-play w06.v1.*"
  }
 ]
