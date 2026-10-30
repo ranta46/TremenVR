@@ -1,0 +1,34 @@
+{
+ "collected": "2026-10-30 19:18 JST",
+ "source": "Metricool getAnalyticsDataByMetrics brand 7623368",
+ "days": {
+  "20261029": {
+   "youtube.subscribers": "1.0",
+   "youtube.videoViews": null,
+   "youtube.subscribersGained": null,
+   "tiktok.followers": "0.0",
+   "tiktok.newFollowers": null,
+   "tiktok.videoViews": null,
+   "instagram.followers": null,
+   "instagram.reelsViews": "142.0",
+   "instagram.followersGained": null,
+   "facebook.followers": "1.0",
+   "facebook.followersAcquired": "0.0",
+   "facebook.mediaView": "448.0"
+  },
+  "20261030": {
+   "youtube.subscribers": null,
+   "youtube.videoViews": "0.0",
+   "youtube.subscribersGained": "0.0",
+   "tiktok.followers": null,
+   "tiktok.newFollowers": "0.0",
+   "tiktok.videoViews": "0.0",
+   "instagram.followers": "0.0",
+   "instagram.reelsViews": null,
+   "instagram.followersGained": "0.0",
+   "facebook.followers": null,
+   "facebook.followersAcquired": null,
+   "facebook.mediaView": null
+  }
+ }
+}

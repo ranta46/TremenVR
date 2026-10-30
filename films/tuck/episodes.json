@@ -25,10 +25,12 @@
   "hook": "Who sleeps under the bridge?",
   "next_address": "The reply says: \"To the one who sleeps under the bridge.\" (the Tall One?)",
   "clue": "The reply letter has a tiny drawing of a box with one eye: the writer knows Tuck.",
-  "status": "stock",
+  "status": "posted",
   "note": "2026-10-30 16:50 finished into stock from the main session (raw staged manually).",
   "video_16x9": "tremenvr/tuck/tuck_ep02_16x9.mp4",
-  "video_9x16": "tremenvr/tuck/tuck_ep02_9x16.mp4"
+  "video_9x16": "tremenvr/tuck/tuck_ep02_9x16.mp4",
+  "posted": "2026-10-30 19:40 JST (scheduled: youtube video+short 19:45, tiktok, instagram, facebook, threads, bluesky, pinterest)",
+  "thumb": "tremenvr/tuck/tuck_thumb_ep02.jpg"
  },
  {
   "ep": 3,
