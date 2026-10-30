@@ -4,7 +4,7 @@
 # C:\Users\81803\TremenFilm\vr_play\YYYY-MM-DD.json  (only keys with a value > 0).
 # The works send events with trk() -> both GoatCounter (thehush) and this counter (since 2026-10-30).
 # Counts are cumulative totals since 2026-10-30 (diff two days for daily numbers).
-import urllib.request, json, os, time, datetime
+import urllib.request, urllib.error, json, os, time, datetime
 NS="tremenvr-play"; OUT=r"C:\Users\81803\TremenFilm\vr_play"
 SRC=["direct","link","profile","yt","youtube","tt","tiktok","ig","instagram","fb","facebook","th","threads",
      "bs","bluesky","pin","pinterest","all","hub","x","twitter","li","link","bio","ad","ads"]
@@ -28,20 +28,28 @@ def key(w,ev,ver="v1"):
     import re
     return re.sub(r"[^A-Za-z0-9_.-]",".",f"{w}.{ver}.{ev}")[:64]
 def get(k):
-    try:
-        r=urllib.request.urlopen(urllib.request.Request(f"https://abacus.jasoncameron.dev/get/{NS}/{k}",headers={"User-Agent":"tremenvr"}),timeout=10)
-        return json.loads(r.read()).get("value",0)
-    except Exception:
-        return 0   # 404 = never happened
+    # abacus rate limit is 30 requests / 10 s; 429 must be retried, not counted as 0
+    for a in range(6):
+        try:
+            r=urllib.request.urlopen(urllib.request.Request(f"https://abacus.jasoncameron.dev/get/{NS}/{k}",headers={"User-Agent":"tremenvr"}),timeout=10)
+            return json.loads(r.read()).get("value",0)
+        except urllib.error.HTTPError as e:
+            if e.code==404: return 0   # 404 = never happened
+            time.sleep(5)
+        except Exception:
+            time.sleep(3)
+    return None   # unknown (could not read)
 def collect():
-    os.makedirs(OUT,exist_ok=True); res={}
+    os.makedirs(OUT,exist_ok=True); res={}; bad=[]
     for w,evs in W.items():
         for ev in COMMON+evs:
             v=get(key(w,ev))
-            if v: res.setdefault(w,{})[ev]=v
-            time.sleep(0.05)
+            if v is None: bad.append(f"{w}.{ev}")
+            elif v: res.setdefault(w,{})[ev]=v
+            time.sleep(0.4)
     d=datetime.date.today().isoformat()
     data={"date":d,"source":f"abacus {NS} (cumulative since 2026-10-30)","works":res}
+    if bad: data["failed_keys"]=bad
     json.dump(data,open(os.path.join(OUT,d+".json"),"w"),indent=1)
     return data
 # usage in Blender: exec(open(path).read()); print(json.dumps(collect()))
