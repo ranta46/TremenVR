@@ -1,0 +1,74 @@
+{
+ "ep": 5,
+ "title": "The Clock That Stopped",
+ "hook": "Where is the boat that never left?",
+ "next": "Letter 6 tomorrow.",
+ "frames": 1680,
+ "cuts": [
+  [
+   1,
+   "Cam_01",
+   "low behind Tuck: tiny Tuck walks toward a huge pale clock tower in the fog; the hands do not move"
+  ],
+  [
+   97,
+   "Cam_02",
+   "letter close-up: To: the clock that stopped"
+  ],
+  [
+   193,
+   "Cam_03",
+   "Tuck looks up at the tall silent clock (eye wide, bulb dim), then brave (bulb bright 298)"
+  ],
+  [
+   337,
+   "Cam_04",
+   "wide: Tuck walks across the square to a small door at the tower base"
+  ],
+  [
+   529,
+   "Cam_05",
+   "door: Tuck pushes the letter into the brass slot (598-613)"
+  ],
+  [
+   649,
+   "Cam_06",
+   "clock face from below: silence, CLUNK (700), the hands move, BONG (720), face glows"
+  ],
+  [
+   769,
+   "Cam_07",
+   "Tuck turns around, afraid: eye wide, bulb dim"
+  ],
+  [
+   841,
+   "Cam_08",
+   "the Tall One across the square turns its pale eyes toward the clock, then walks away (1000-1060)"
+  ],
+  [
+   1057,
+   "Cam_09",
+   "side: Tuck relaxes, turns back to the door and bows"
+  ],
+  [
+   1201,
+   "Cam_10",
+   "a reply slides out of the slot and falls to the ground (1226-1280)"
+  ],
+  [
+   1345,
+   "Cam_11",
+   "reply close-up: To: the boat that never left, red wax seal; Tuck picks it up (1441)"
+  ],
+  [
+   1489,
+   "Cam_12",
+   "Tuck holds the reply, turns, happy triple hop, bulb bright"
+  ],
+  [
+   1592,
+   "Cam_13",
+   "wide: the clock is ticking again above; Tuck walks out into the fog"
+  ]
+ ]
+}
