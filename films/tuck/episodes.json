@@ -45,11 +45,13 @@
   "hook": "Which window never sleeps?",
   "next_address": "The reply says: \"To the window that never sleeps.\"",
   "clue": "The reply has a tiny drawing of a mail slot [ = ]: the writer may be at the post office.",
-  "status": "stock",
+  "status": "posted",
   "render_started": "2026-10-30 11:00 JST (about 6.7 s/frame, done around 14:30 JST)",
   "note": "2026-10-30 16:50 finished into stock from the main session (raw staged manually).",
   "video_16x9": "tremenvr/tuck/tuck_ep03_16x9.mp4",
-  "video_9x16": "tremenvr/tuck/tuck_ep03_9x16.mp4"
+  "video_9x16": "tremenvr/tuck/tuck_ep03_9x16.mp4",
+  "posted": "2026-10-31 19:40 JST (scheduled: youtube video 19:40 + short 19:45, tiktok, instagram, facebook, threads, bluesky, pinterest; game link in all)",
+  "thumb": "tremenvr/tuck/tuck_thumb_ep03.jpg"
  },
  {
   "ep": 4,
