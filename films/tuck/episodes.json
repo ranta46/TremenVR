@@ -57,10 +57,12 @@
   "hook": "Why did the clock stop?",
   "next_address": "The reply says: \"To the clock that stopped.\"",
   "clue": "A cup on the desk was still steaming: someone was in the room just before Tuck came.",
-  "status": "rendering",
+  "status": "stock",
   "render_started": "2026-10-30 16:09 JST (about 7.5 s/frame, done around 19:45 JST)",
   "render_done": "2026-10-30 20:22 JST (all 1680 frames); raw.mp4 encoded on the PC 2026-10-31 10:50",
-  "note": "2026-10-31 10:47 run: could not stage raw.mp4 (TremenFilm folder not connected to the run session). Finish into stock next run."
+  "note": "2026-10-31 10:47 run: could not stage raw.mp4 (TremenFilm folder not connected to the run session). Finish into stock next run. | 2026-10-31 15:47 run: raw.mp4 sent via Blender (folder not connected to run session), finished into stock.",
+  "video_16x9": "tremenvr/tuck/tuck_ep04_16x9.mp4",
+  "video_9x16": "tremenvr/tuck/tuck_ep04_9x16.mp4"
  },
  {
   "ep": 5,
@@ -70,7 +72,11 @@
   "hook": "Where is the boat that never left?",
   "next_address": "The reply says: \"To the boat that never left.\"",
   "clue": "The reply is sealed with red wax, the same red as the post office.",
-  "status": "rendering",
-  "render_started": "2026-10-31 10:58 JST (about 2-4 s/frame at the start)"
+  "status": "stock",
+  "render_started": "2026-10-31 10:58 JST (about 2-4 s/frame at the start)",
+  "video_16x9": "tremenvr/tuck/tuck_ep05_16x9.mp4",
+  "video_9x16": "tremenvr/tuck/tuck_ep05_9x16.mp4",
+  "note": "2026-10-31 15:47 run: raw.mp4 sent via Blender (folder not connected to run session), finished into stock.",
+  "render_done": "2026-10-31 13:25 JST (all 1680 frames); raw.mp4 encoded 15:50"
  }
 ]
