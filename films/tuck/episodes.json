@@ -30,7 +30,10 @@
   "video_16x9": "tremenvr/tuck/tuck_ep02_16x9.mp4",
   "video_9x16": "tremenvr/tuck/tuck_ep02_9x16.mp4",
   "posted": "2026-10-30 19:40 JST (scheduled: youtube video+short 19:45, tiktok, instagram, facebook, threads, bluesky, pinterest)",
-  "thumb": "tremenvr/tuck/tuck_thumb_ep02.jpg"
+  "thumb": "tremenvr/tuck/tuck_thumb_ep02.jpg",
+  "promo_segs": "4-8,27-32,44-50,58-63",
+  "promo_video": "tremenvr/tuck/tuck_promo_ep02.mp4",
+  "promo_posted": "scheduled 2026-10-31 12:45 JST (tiktok, youtube short, instagram reel)"
  },
  {
   "ep": 3,
