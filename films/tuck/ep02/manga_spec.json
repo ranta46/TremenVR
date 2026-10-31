@@ -1,0 +1,10 @@
+{"ep":2,"title":"The Last Lamp","panels":[
+ {"t":6.0,"gamma":1.0,"crop":[0,0,1280,560],"caption":"A new letter."},
+ {"t":12.0,"gamma":1.2,"caption":"The lamps are all dead."},
+ {"t":18.0,"gamma":1.2,"bubble":"beep?"},
+ {"t":28.0,"gamma":1.8,"crop":[0,200,1000,600],"sfx":"THOOM...","caption":"Something rises from below."},
+ {"t":32.0,"gamma":1.0,"crop":[320,0,960,720],"sfx":"!"},
+ {"t":40.0,"gamma":1.4,"crop":[0,160,1280,600],"caption":"Tuck never stops a delivery."},
+ {"t":52.5,"gamma":1.0,"sfx":"CLICK","caption":"Light."},
+ {"t":63.0,"gamma":0.8,"bubble":"beep...","caption":"Who wrote back?"}
+]}
