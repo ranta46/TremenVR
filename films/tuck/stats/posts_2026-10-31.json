@@ -1,0 +1,365 @@
+{
+ "collected": "2026-10-31 19:16 JST",
+ "note": "times converted UTC->JST. Metricool data lags ~1 day; posts from 2026-10-31 (ad short ep2, manga ep2, film ep3) not in analytics yet. TikTok cols: views, likes, comments, shares (TKPO02..). IG reels: views, likes, reach, comments, avg_watch_s.",
+ "tiktok": [
+  {
+   "time_jst": "2026-10-30 19:40",
+   "type": "film",
+   "ep": 2,
+   "text": "TUCK — Letter 2: The Last Lamp A little box robot carries a letter \"to the last lamp on th",
+   "views": 50.0,
+   "likes": 0.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-30 12:13",
+   "type": "ad short",
+   "ep": 1,
+   "text": "A tiny box robot delivers a letter to \"whoever is still here.\" Who writes the letters? Ful",
+   "views": 133.0,
+   "likes": 1.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-29 19:04",
+   "type": "teaser",
+   "ep": 2,
+   "text": "Something walks in the fog... Tuck saw it too. TUCK — Letter 2: The Last Lamp. Tomorrow.",
+   "views": 159.0,
+   "likes": 2.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-28 20:42",
+   "type": "film",
+   "ep": 2,
+   "text": "A letter for whoever is still here. Tuck delivers it. Who writes the letters? Letter 2 tom",
+   "views": 184.0,
+   "likes": 4.0,
+   "comments": 0.0,
+   "shares": 1.0
+  },
+  {
+   "time_jst": "2026-10-27 19:04",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "Something huge is behind you. Stone giants (moss-giants game ad)",
+   "views": 224.0,
+   "likes": 2.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-26 19:04",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "In the dark, something is looking at you. (whale-below game ad)",
+   "views": 146.0,
+   "likes": 0.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-26 11:52",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "A sleepy comet is falling on you! (star-jar game ad)",
+   "views": 135.0,
+   "likes": 1.0,
+   "comments": 0.0,
+   "shares": 0.0
+  },
+  {
+   "time_jst": "2026-10-24 18:22",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "Keep the lights on. The Signal Tower (w01 game ad)",
+   "views": 172.0,
+   "likes": 4.0,
+   "comments": 0.0,
+   "shares": 0.0
+  }
+ ],
+ "instagram_reels": [
+  {
+   "time_jst": "2026-10-30 19:42",
+   "type": "film",
+   "ep": 2,
+   "text": "TUCK — Letter 2: The Last Lamp. A little box robot carries a letter... Who writes the lett",
+   "views": 108.0,
+   "likes": 0.0,
+   "reach": 100.0,
+   "comments": 0.0,
+   "avg_watch_s": 3.097
+  },
+  {
+   "time_jst": "2026-10-30 12:13",
+   "type": "ad short",
+   "ep": 1,
+   "text": "A tiny box robot delivers a letter to \"whoever is still here.\" Who writes the letters? Ful",
+   "views": 116.0,
+   "likes": 0.0,
+   "reach": 106.0,
+   "comments": 0.0,
+   "avg_watch_s": 5.13
+  },
+  {
+   "time_jst": "2026-10-29 19:06",
+   "type": "teaser",
+   "ep": 2,
+   "text": "Something walks in the fog... Tuck saw it too. TUCK — Letter 2: The Last Lamp. Tomorrow.",
+   "views": 143.0,
+   "likes": 0.0,
+   "reach": 121.0,
+   "comments": 0.0,
+   "avg_watch_s": 5.204
+  },
+  {
+   "time_jst": "2026-10-28 21:22",
+   "type": "film",
+   "ep": 1,
+   "text": "TUCK — Letter 1: Whoever Is Still Here. Who writes the letters? Letter 2 tomorrow.",
+   "views": 113.0,
+   "likes": 1.0,
+   "reach": 104.0,
+   "comments": 0.0,
+   "avg_watch_s": 2.738
+  },
+  {
+   "time_jst": "2026-10-27 19:06",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "Something huge is behind you. (moss-giants game ad)",
+   "views": 126.0,
+   "likes": 1.0,
+   "reach": 115.0,
+   "comments": 0.0,
+   "avg_watch_s": 6.456
+  },
+  {
+   "time_jst": "2026-10-26 19:05",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "In the dark, something is looking at you. (whale-below game ad)",
+   "views": 127.0,
+   "likes": 1.0,
+   "reach": 128.0,
+   "comments": 0.0,
+   "avg_watch_s": 3.925
+  },
+  {
+   "time_jst": "2026-10-26 11:54",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "A sleepy comet is falling on you! (star-jar game ad)",
+   "views": 156.0,
+   "likes": 0.0,
+   "reach": 137.0,
+   "comments": 1.0,
+   "avg_watch_s": 2.856
+  },
+  {
+   "time_jst": "2026-10-24 21:52",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "If it looks at you... don't move. The Signal Tower (w01 game ad)",
+   "views": 1697.0,
+   "likes": 23.0,
+   "reach": 1550.0,
+   "comments": 0.0,
+   "avg_watch_s": 13.122
+  }
+ ],
+ "youtube": [
+  {
+   "time_jst": "2026-10-27 19:11",
+   "type": "other (game ad short)",
+   "text": "Something huge is behind you. #shorts",
+   "views": 1142,
+   "likes": 12
+  },
+  {
+   "time_jst": "2026-10-26 19:10",
+   "type": "other (game ad short)",
+   "text": "In the dark, something is looking at you #shorts",
+   "views": 1133,
+   "likes": 8
+  },
+  {
+   "time_jst": "2026-10-26 11:50",
+   "type": "other (game ad short)",
+   "text": "A sleepy comet is falling on you! #shorts",
+   "views": 1186,
+   "likes": 8
+  },
+  {
+   "time_jst": "2026-10-24 18:22",
+   "type": "other (game ad short)",
+   "text": "If it looks at you... don't move. #shorts",
+   "views": 13,
+   "likes": 1
+  },
+  {
+   "note": "No TUCK YouTube rows from Metricool yet (YTVP). YouTube 'videos' connector is deprecated."
+  }
+ ],
+ "facebook": [
+  {
+   "time_jst": "2026-10-30 18:06",
+   "type": "manga",
+   "ep": 1,
+   "text": "TUCK - Letter 1 in one page.",
+   "impressions": 0,
+   "reactions": 0
+  },
+  {
+   "time_jst": "2026-10-28 16:59",
+   "type": "film?",
+   "ep": 1,
+   "text": "(no text returned)",
+   "impressions": 1,
+   "reactions": 0
+  },
+  {
+   "time_jst": "2026-10-24 21:18",
+   "type": "other",
+   "text": "(no text returned)",
+   "impressions": 0,
+   "reactions": 0
+  }
+ ],
+ "threads": [
+  {
+   "time_jst": "2026-10-30 19:42",
+   "type": "film",
+   "ep": 2,
+   "text": "TUCK — Letter 2: The Last Lamp ... Letter 3 tomorrow.",
+   "views": null,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-30 18:07",
+   "type": "manga",
+   "ep": 1,
+   "text": "TUCK - Letter 1 in one page.",
+   "views": 5,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-29 19:05",
+   "type": "teaser",
+   "ep": 2,
+   "text": "Something walks in the fog... Tuck saw it too. TUCK — Letter 2: The Last Lamp. Tomorrow.",
+   "views": null,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-28 21:24",
+   "type": "film",
+   "ep": 1,
+   "text": "TUCK — Letter 1: Whoever Is Still Here",
+   "views": null,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-27 19:08",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "Something huge is behind you. (moss-giants)",
+   "views": 14,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-26 19:09",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "In the dark... (whale-below)",
+   "views": 6,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-26 11:59",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "A sleepy comet... (star-jar)",
+   "views": 8,
+   "likes": null
+  },
+  {
+   "time_jst": "2026-10-24 21:51",
+   "type": "other (game ad)",
+   "ep": null,
+   "text": "If it looks at you... (w01)",
+   "views": 9,
+   "likes": null
+  }
+ ],
+ "bluesky": {
+  "note": "Metricool has no view metric for Bluesky; likes only",
+  "posts": [
+   {
+    "time_jst": "2026-10-24 21:50",
+    "type": "other (game ad)",
+    "ep": null,
+    "text": "If it looks at you... (w01)",
+    "likes": 7
+   },
+   {
+    "time_jst": "2026-10-26 12:02",
+    "type": "other (game ad)",
+    "ep": null,
+    "text": "star-jar",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-26 19:12",
+    "type": "other (game ad)",
+    "ep": null,
+    "text": "whale-below",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-27 19:12",
+    "type": "other (game ad)",
+    "ep": null,
+    "text": "moss-giants",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-28 21:25",
+    "type": "film",
+    "ep": 1,
+    "text": "TUCK — Letter 1: Whoever Is Still Here",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-29 19:04",
+    "type": "teaser",
+    "ep": 2,
+    "text": "Something walks in the fog... Tuck saw it too. TUCK — Letter 2: The Last Lamp. Tomorrow.",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-30 18:06",
+    "type": "manga",
+    "ep": 1,
+    "text": "TUCK - Letter 1 in one page.",
+    "likes": null
+   },
+   {
+    "time_jst": "2026-10-30 19:40",
+    "type": "film",
+    "ep": 2,
+    "text": "TUCK — Letter 2: The Last Lamp ... Letter 3 tomorrow.",
+    "likes": null
+   }
+  ]
+ },
+ "pinterest": {
+  "note": "PIPO metrics returned no rows for this period",
+  "posts": []
+ }
+}
