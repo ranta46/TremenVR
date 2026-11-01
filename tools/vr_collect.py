@@ -21,6 +21,10 @@ W={
         +["quit-at-"+p for p in ("menu","","dawn","gran","quake","wake")]+["quit-at-game-"+i for i in R(0,20)],
  "w06": ["moved","d1","d2","d3","tall","look-up","eyes-open","reach","yt-click","again","zap-1","zap-10"]+["rank-"+r for r in "SABC"]
         +["hit-"+i for i in R(1,5)]+["spotted-"+i for i in R(1,3)]+["quit-at-"+p+"-"+i for p in ("go","tall","hand") for i in R(0,2)],
+ # Gloamrun: The Last Train (ranta46.github.io/TheHush/), counter since 2026-11-01
+ "ride": ["page/open","ride/again"]+["ride/01-board-"+d for d in ("pc","phone","vr")]
+        +["ride/"+c for c in ("02-town-edge","03-fast-run","04-needle","05-bridge-warning","06-the-gap","07-tunnel-in","08-tunnel-out","09-rail-end","10-whale-landing","11-first-morning")]
+        +["quit/"+k+"-at-"+c for k in ("closed","exit") for c in ['00-menu', '01-board-pc', '01-board-phone', '01-board-vr', '02-town-edge', '03-fast-run', '04-needle', '05-bridge-warning', '06-the-gap', '07-tunnel-in', '08-tunnel-out', '09-rail-end', '10-whale-landing', '11-first-morning']],
  "w05": ["echo","face","follow","look-down","rise","storm","touch","whoa"]+["bell-"+i for i in R(0,12)]
         +["quit-at-"+p for p in ("menu","","edge","face","glow","rise","spiral","storm")]+["quit-at-echo-"+i for i in R(0,12)],
 }
@@ -44,7 +48,7 @@ def get(k):
 def collect():
     os.makedirs(OUT,exist_ok=True); res={}; bad=[]
     for w,evs in W.items():
-        for ev in COMMON+evs:
+        for ev in (evs if w=="ride" else COMMON+evs):
             v=get(key(w,ev))
             if v is None: bad.append(f"{w}.{ev}")
             elif v: res.setdefault(w,{})[ev]=v
