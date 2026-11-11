@@ -1,0 +1,27 @@
+{
+ "date": "2026-11-11",
+ "source": "abacus tremenvr-play (cumulative since 2026-10-30)",
+ "works": {
+  "w06": {
+   "open-yt": 3
+  },
+  "ride": {
+   "page/open": 9,
+   "ride/again": 1,
+   "ride/01-board-pc": 2,
+   "ride/01-board-phone": 2,
+   "ride/02-town-edge": 3,
+   "ride/03-fast-run": 3,
+   "ride/04-needle": 2,
+   "ride/05-bridge-warning": 2,
+   "ride/06-the-gap": 2,
+   "ride/07-tunnel-in": 2,
+   "ride/08-tunnel-out": 2,
+   "ride/09-rail-end": 2,
+   "ride/10-whale-landing": 2,
+   "ride/11-first-morning": 2,
+   "quit/closed-at-03-fast-run": 1
+  }
+ },
+ "note": "abacus was slow (500/timeouts) today; full 800-key read did not finish, so main keys (start/finish of w01-w06, w06 open-yt, all ride steps) were read separately. All read OK, no failed keys."
+}
