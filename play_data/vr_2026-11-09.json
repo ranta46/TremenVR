@@ -1,0 +1,26 @@
+{
+ "date": "2026-11-09",
+ "source": "abacus tremenvr-play (cumulative since 2026-10-30)",
+ "works": {
+  "w06": {
+   "open-yt": 3
+  },
+  "ride": {
+   "page/open": 8,
+   "ride/again": 1,
+   "ride/01-board-pc": 1,
+   "ride/01-board-phone": 2,
+   "ride/02-town-edge": 2,
+   "ride/03-fast-run": 2,
+   "ride/04-needle": 1,
+   "ride/05-bridge-warning": 1,
+   "ride/06-the-gap": 1,
+   "ride/07-tunnel-in": 1,
+   "ride/08-tunnel-out": 1,
+   "ride/09-rail-end": 1,
+   "ride/10-whale-landing": 1,
+   "ride/11-first-morning": 1,
+   "quit/closed-at-03-fast-run": 1
+  }
+ }
+}
