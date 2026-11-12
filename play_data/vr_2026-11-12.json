@@ -1,0 +1,27 @@
+{
+ "date": "2026-11-12",
+ "source": "abacus tremenvr-play (cumulative since 2026-10-30)",
+ "works": {
+  "w06": {
+   "open-yt": 3
+  },
+  "ride": {
+   "page/open": 9,
+   "ride/again": 1,
+   "ride/01-board-pc": 2,
+   "ride/01-board-phone": 2,
+   "ride/03-fast-run": 3,
+   "ride/04-needle": 2,
+   "ride/06-the-gap": 2,
+   "ride/07-tunnel-in": 2,
+   "ride/09-rail-end": 2,
+   "ride/10-whale-landing": 2,
+   "ride/11-first-morning": 2,
+   "quit/closed-at-03-fast-run": 1
+  },
+  "w05": {
+   "open-profile": 1
+  }
+ },
+ "failed_keys": ["w01.finish","w01.start-phone","w01.start-vr","w01.open-direct","w01.open-link","w01.open-youtube","w01.open-tt","w01.open-th","w01.open-threads","w01.open-twitter","w01.open-li","w01.open-link","w01.open-bio","w01.open-ad","w01.from-fb","w01.from-facebook","w01.quit-at-lamps-0-stare","w01.quit-at-lamps-1","w01.quit-at-lamps-6-stare","w01.quit-at-lamps-10","w01.quit-at-lamps-10-stare","w01.quit-at-lamps-17","w02.open-youtube","w02.open-tt","w02.open-link","w02.open-bio","w02.from-all","w02.quit-at-intro-3","w02.quit-at-intro-4","w02.quit-at-intro-27","w02.quit-at-intro-29","w02.quit-at-intro-34","w02.quit-at-intro-35","w02.quit-at-intro-40","w02.quit-at-stars-0","w02.quit-at-stars-1","w02.quit-at-red-23","w02.quit-at-red-26","w02.quit-at-red-30","w02.quit-at-red-31","w02.quit-at-comet-11","w02.quit-at-comet-27","w02.quit-at-comet-30","w02.quit-at-comet-31","w02.quit-at-sky-10","w02.quit-at-sky-11","w02.quit-at-sky-15","w02.quit-at-sky-16","w02.quit-at-sky-19","w02.quit-at-sky-20","w02.quit-at-sky-21","w03.open-direct","w03.open-ig","w03.open-th","w03.open-threads","w03.from-pin","w03.eye","w04.start-phone","w04.open-direct","w04.open-li","w04.open-link","w04.from-th","w04.from-all","w04.from-bio","w04.tag-0","w04.tag-1","w04.tag-5","w04.quit-at-menu","w04.quit-at-","w04.quit-at-game-1","w04.quit-at-game-12","w04.quit-at-game-13","w04.quit-at-game-17","w04.quit-at-game-18","w06.open-facebook","w06.open-all","w06.from-youtube","w06.from-tt","w06.from-hub","w06.yt-click","w06.rank-S","w06.rank-A","w06.quit-at-go-2","ride.ride/02-town-edge","ride.ride/05-bridge-warning","ride.ride/08-tunnel-out","ride.quit/closed-at-07-tunnel-in","ride.quit/closed-at-08-tunnel-out","ride.quit/exit-at-03-fast-run","ride.quit/exit-at-04-needle","ride.quit/exit-at-10-whale-landing","w05.open-direct","w05.open-link","w05.open-tiktok","w05.open-ig","w05.quit-at-echo-3"]
+}
