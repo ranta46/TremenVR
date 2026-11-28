@@ -1,0 +1,34 @@
+{
+ "date": "2026-11-27",
+ "source": "abacus tremenvr-play (cumulative since 2026-10-30)",
+ "works": {
+  "w06": {
+   "open-yt": 3
+  },
+  "ride": {
+   "page/open": 15,
+   "ride/again": 2,
+   "ride/01-board-pc": 2,
+   "ride/01-board-phone": 3,
+   "ride/02-town-edge": 4,
+   "ride/03-fast-run": 4,
+   "ride/04-needle": 3,
+   "ride/05-bridge-warning": 3,
+   "ride/06-the-gap": 3,
+   "ride/07-tunnel-in": 3,
+   "ride/08-tunnel-out": 3,
+   "ride/09-rail-end": 3,
+   "ride/10-whale-landing": 3,
+   "ride/11-first-morning": 3,
+   "quit/closed-at-03-fast-run": 1
+  },
+  "w05": {
+   "start-pc": 1,
+   "open-direct": 1,
+   "open-profile": 1,
+   "from-direct": 1,
+   "quit-at-edge": 1
+  }
+ },
+ "note": "copied 2026-11-28 from PC vr_play/2026-11-27.json via Blender (file appeared after the 11-27 run gave up); no failed keys"
+}
